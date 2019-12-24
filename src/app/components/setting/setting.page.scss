@@ -1,0 +1,82 @@
+.my--setting{
+    --background: #f8f9fb; 
+}
+.person--info--list{
+    padding-top: 0;
+    margin-top: 10px;
+    ion-col{
+        display: flex;
+    }
+    .second--col{
+        justify-content: flex-end;
+        flex-wrap: nowrap;
+    }
+}
+.list-icon{
+    color: #a0c1fb;
+    padding: 0 5px;
+}
+.person-mess-content{
+    display: flex;
+    line-height: 26px;
+    ion-avatar{
+        width: 26px;
+        height: 26px;
+    }
+    .ion-iosyou{
+        padding-left: 5px;
+    }
+}
+.sign-wrapper{
+    display: flex;
+    .sign--content{
+        white-space: nowrap;
+        overflow: hidden;
+        max-width: 10em;
+        text-overflow: ellipsis;
+    }
+}
+.about--us{
+    position: relative;
+    height: 100%;
+    background-image: url('../../../assets/img/bg.png');
+    background-size: 100% 100%;
+    img{
+        position: absolute;
+    }
+    .about-us-one{
+        width: 35%;
+        top: 20px;
+        left: 20px;
+    }
+    .about-us-two{
+        width: 20%;
+        top: 25px;
+        right: 25px;
+    }
+    .about-us-three{
+        width: 80%;
+        top: 16%;
+        left: 12%;
+    }
+    .about-us-four{
+        bottom: 20px;
+        left: 25px;
+        width: 20%;
+    }
+}
+.grade--select{
+    --padding-end: 0; 
+    
+}
+.grade--select:host{
+    .select-icon{
+        display: none;
+    }
+}
+.give--opinion{
+    iframe{
+        width: 100%;
+        min-height: 1000px;
+    }
+}

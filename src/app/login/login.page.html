@@ -1,0 +1,36 @@
+<ion-content>
+    <div class="top--header-bg">
+        <div class="logo--box">
+            <img src="../../assets/img/logo.png" alt="纳智助手">
+            <div class="logo--name-wrapper">
+                <div style="padding:5px 0;">纳智助手</div>
+                <div class="logo--name--en">NAZHI HELPER</div>
+            </div>
+        </div>
+    </div>
+    <div id="entry" class="login--content">
+        <div class="login--username">
+            <ion-item class="login-item">
+                <ion-icon item-left name="person"></ion-icon>
+                <ion-input placeholder="请输入用户名" clearInput [(ngModel)]="username"></ion-input>
+            </ion-item>
+        </div>
+        <div class="login-password">
+            <ion-item class="login-item">
+                <ion-icon name="lock"></ion-icon>   
+                <ion-input type="password" placeholder="请输入6-18位密码" clearInput [(ngModel)]="password"></ion-input> 
+            </ion-item>
+        </div>
+        <div class="forget--pass">
+            <span (click)="forgetPass()">忘记密码？</span>
+        </div>
+        <div class="login--button">
+            <ion-button color="primary" class="login--but" (click)="handleLogin()" >登 录</ion-button>
+        </div>
+    </div>
+
+    <div class="logo--footer" id="entry">
+        <div>纳吉特教育科技（北京）有限公司</div>
+        <div>Copyright © 2019 陕ICP备16012831号-3</div>
+    </div>
+</ion-content>

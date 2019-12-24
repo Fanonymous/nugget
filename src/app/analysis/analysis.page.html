@@ -1,0 +1,93 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>纳智助手</ion-title>
+    </ion-toolbar>
+</ion-header>
+      
+
+<ion-content class="analysis">
+    <div class="media--use">
+        <div class="module--title" *ngIf="menuIds.indexOf('10002') > -1 || menuIds.indexOf('10003') > -1 ">教师多媒体使用分析</div>
+        <div class="chart--content" *ngIf="isHasMedia">
+            <div class="chart--top">
+                <canvas #mediaUse></canvas>
+                <div class="chart--right">
+                    <div class="right--box">
+                        <div>{{level}}</div>
+                        <div>{{percentage}}%&nbsp;<span style="font-size: 12px;">的班级达到该称号</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom--mess">
+                <img [src]="img">
+                <span>{{schoolBottomObj.name}}&nbsp;以{{schoolBottomObj.total}}分夺得排行榜冠军</span>
+            </div>
+        </div>
+        <div class="chart--content" *ngIf="isHasMediaTeacher">
+            <div class="chart--top">
+                <canvas #mediaUseTeacher></canvas>
+                <div class="chart--right">
+                    <div class="right--box">
+                        <div>{{level1}}</div>
+                        <div class="xs-font--size">全校排名第<span style="font-size: 14px;">{{teacherBottomObj.rank}}</span> 名</div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom--mess">
+                <img [src]="img1">
+                <span>{{teacherBottomObj.full_name}}&nbsp;以{{teacherBottomObj.total}}分夺得排行榜冠军</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="school--infomation">
+        <div class="module--title" *ngIf="menuIds.indexOf('10004') > -1">校园信息化建设分析</div>
+        <div class="chart--content" *ngIf="menuIds.indexOf('10004') > -1">
+            <div class="chart--top" *ngIf="userType == '2'">
+                <div class="gif--left">
+                    <img src="../../assets/img/blue.gif">
+                    <div class="center--font">
+                        <div>{{netObj.bytesTotal}}GB</div>
+                        <div>日均流量</div>
+                    </div>
+                </div>
+                <div class="chart--right">
+                    <div class="right--box">
+                        <div>{{netObj.net}}M</div>
+                        <div style="font-size: 12px;">班均出口带宽</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart--top" *ngIf="userType == '4'">
+                <div class="edu--left">
+                    <img src="../../assets/img/circle.png">
+                    <div class="center--font">
+                        <div>{{netObj.standardRate}}%</div>
+                        <div>班均宽带达标率</div>
+                        <div>{{netObj.standardNum}}/{{netObj.noStandardNum}}</div>
+                    </div>
+                </div>
+                <div class="chart--right">
+                    <div class="edu--tip--box">
+                        <div>{{netObj.totalNum}}</div>
+                        <div class="edu--tip">已建设学校数</div>
+                    </div>
+                    <div class="edu--tip--box">
+                        <div>{{netObj.teacher}}</div>
+                        <div class="edu--tip">教职工总数</div>
+                    </div>
+                    <div class="edu--tip--box">
+                        <div>{{netObj.student}}</div>
+                        <div class="edu--tip">学生总人数</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom--mess">
+                <img [src]="img2">
+                <span>{{educationObj.name}}&nbsp;以{{educationObj.val}}小时夺得排行榜冠军</span>
+            </div>
+        </div>
+    </div>
+</ion-content>

@@ -1,0 +1,21 @@
+.update--info{
+    --background: #f8f9fb; 
+}
+.sign--textarea,.username--input{
+    border-bottom: 1px solid #dcdfe6;
+}
+.update--save{
+    margin: 10px 20px;
+    .save--but{
+        --border-radius: 4px !important;
+    }
+}
+.update--sign{
+    position: relative;
+    .size--tip{
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+        color: #909399;
+    }
+}

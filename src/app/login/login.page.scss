@@ -1,0 +1,59 @@
+.top--header-bg{
+    height: 40%;
+    background-image: url('../../assets/img/login_bg.png');
+    background-size: 100% 100%;
+    .logo--box{
+        text-align: center;
+        height: 100%;
+        img{
+            width: 15%;
+            margin-top: 20%;
+        }
+        .logo--name-wrapper{
+            color: #fff;
+            .logo--name--en{
+                font-size: 14px;
+            }
+        }
+    }
+}
+.login--content{
+    margin: 0 auto;
+    margin-top: 6%;
+    width: 70%;
+    .login-item{
+        --padding-start : 0;
+        --inner-padding-end : 0;
+        ion-input{
+            --padding-start : 5px;
+        }
+        ion-icon{
+            color:#488aff;
+        }
+    }
+    .forget--pass{
+        font-size: 14px;
+        color:#488aff;
+        cursor: pointer;
+        text-align: right;
+        margin-top: 10px;
+    }
+    .login--button{
+        margin-top: 10px;
+        text-align: center;
+        .login--but{
+            width: 98%;
+            word-spacing: 2em;
+        }
+    }
+}
+.logo--footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #C0C4CC;
+    font-size: 14px;
+    padding: 10px 0;
+}

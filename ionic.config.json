@@ -1,0 +1,7 @@
+{
+  "name": "nugget",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

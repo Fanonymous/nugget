@@ -1,0 +1,166 @@
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-back-button icon="myleft" slot="start"></ion-back-button>
+    <ion-title>{{title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="my--setting">
+    <div class="all--mess" *ngIf="type == '1'">
+        <ion-list class="person--info--list" lines="inset">
+            <ion-item>
+                <div class="icon iconfont ion-iostouxiang list-icon"></div>
+                <ion-label>头像</ion-label>
+                <div slot="end" class="person-mess-content" (click)="addPicture(3, 1)">
+                    <ion-avatar>
+                        <img [src]="url">
+                    </ion-avatar>
+                    <span class="icon iconfont ion-iosyou"></span>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div class="icon iconfont ion-iosxingmingyonghumingnicheng list-icon"></div>
+                <ion-label>用户名</ion-label>
+                <div slot="end" class="person-mess-content" [routerLink]="[ '/update-info']" [queryParams]="{ type : 2 }">
+                    <span>{{name}}</span>
+                    <span class="icon iconfont ion-iosyou"></span>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div class="icon iconfont ion-iosicon-person list-icon"></div>
+                <ion-label>真实姓名</ion-label>
+                <div slot="end" class="person-mess-content" [routerLink]="[ '/update-info']" [queryParams]="{ type : 3 }">
+                    <span>{{realName}}</span>
+                    <span class="icon iconfont ion-iosyou"></span>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div class="icon iconfont ion-iosxingbie list-icon"></div>
+                <ion-label>性别</ion-label>
+                <div slot="end" class="person-mess-content" [routerLink]="[ '/update-info']" [queryParams]="{ type : 4 }">
+                    <span>{{sex}}</span>
+                    <span class="icon iconfont ion-iosyou"></span>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div class="icon iconfont ion-iosxiugai list-icon"></div>
+                <ion-label>个性签名</ion-label>
+                <div slot="end" class="sign-wrapper" [routerLink]="[ '/update-info']" [queryParams]="{ type : 1 }">
+                    <span class="sign--content">{{sign}}</span>
+                    <span class="icon iconfont ion-iosyou"></span>
+                </div>
+            </ion-item>
+        </ion-list>
+
+        <ion-list class="person--info--list" lines="inset">
+            <ion-item>
+                <div class="icon iconfont ion-iosphone_icon list-icon"></div>
+                <ion-label>手机号</ion-label>
+                <div slot="end" class="person-mess-content" [routerLink]="[ '/update-info']" [queryParams]="{ type : 5 }">
+                    <span>{{phone}}</span>
+                    <span class="icon iconfont ion-iosyou"></span>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div class="icon iconfont ion-iosyouxiang list-icon"></div>
+                <ion-label>邮箱</ion-label>
+                <div slot="end" class="person-mess-content" [routerLink]="[ '/update-info']" [queryParams]="{ type : 6 }">
+                    <span>{{email}}</span>
+                    <span class="icon iconfont ion-iosyou"></span>
+                </div>
+            </ion-item>
+            
+        </ion-list>
+    </div>
+
+    <!-- 我的学校 -->
+    <div class="my--school" *ngIf="type == '2'">
+        <ion-list class="person--info--list" lines="inset">
+            <ion-item>
+                <div class="icon iconfont ion-iosdibudaohanglan- list-icon"></div>
+                <ion-label>学校头像</ion-label>
+                <div slot="end" class="person-mess-content" (click)="addPicture(1, 1)">
+                    <ion-avatar>
+                        <img [src]="schoolAvater">
+                    </ion-avatar>
+                    <span class="icon iconfont ion-iosyou"></span>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div class="icon iconfont ion-iosmtscover list-icon"></div>
+                <ion-label>学校封面</ion-label>
+                <div slot="end" class="person-mess-content" (click)="addPicture(1, 2)">
+                    <ion-avatar>
+                        <img [src]="schoolBackground">
+                    </ion-avatar>
+                    <span class="icon iconfont ion-iosyou"></span>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div class="icon iconfont ion-iosiconset0273 list-icon"></div>
+                <ion-label>学校口号</ion-label>
+                <div slot="end" class="sign-wrapper" (click)="baseLink(1)">
+                    <span class="sign--content">{{schoolSlogan}}</span>
+                    <span class="icon iconfont ion-iosyou"></span>
+                </div>
+            </ion-item>
+        </ion-list>
+    </div>
+
+    <!-- 我的班级 -->
+    <div class="my--class" *ngIf="type == '3'">
+            <ion-list class="person--info--list" lines="inset">
+                <ion-item>
+                    <div class="icon iconfont ion-iosxuanze list-icon"></div>
+                    <ion-label>选择班级</ion-label>
+                    <ion-select [(ngModel)]="className" (ionChange)="handleSelect(className)" interface="alert" placeholder="请选择班级" cancelText="取消" okText="确定" class="grade--select">
+                        <ion-select-option *ngFor="let item of classInfo" [value]="item.classId">{{item.gradeName + item.className}}</ion-select-option>
+                    </ion-select>
+                    <!-- <div slot="end" class="person-mess-content" style="margin-left:0;">
+                        <span class="icon iconfont ion-iosyou"></span>
+                    </div> -->
+                </ion-item>
+                <ion-item>
+                    <div class="icon iconfont ion-iosbanji list-icon"></div>
+                    <ion-label>班级头像</ion-label>
+                    <div slot="end" class="person-mess-content" (click)="addPicture(2, 1)">
+                        <ion-avatar>
+                            <img [src]="classAvater">
+                        </ion-avatar>
+                        <span class="icon iconfont ion-iosyou"></span>
+                    </div>
+                </ion-item>
+                <ion-item>
+                    <div class="icon iconfont ion-iosmtscover list-icon"></div>
+                    <ion-label>班级封面</ion-label>
+                    <div slot="end" class="person-mess-content" (click)="addPicture(2, 2)">
+                        <ion-avatar>
+                            <img [src]="classBackground">
+                        </ion-avatar>
+                        <span class="icon iconfont ion-iosyou"></span>
+                    </div>
+                </ion-item>
+                <ion-item>
+                    <div class="icon iconfont ion-iosiconset0273 list-icon"></div>
+                    <ion-label>班级口号</ion-label>
+                    <div slot="end" class="person-mess-content" (click)="baseLink(2)">
+                        <span>{{classSlgon}}</span>
+                        <span class="icon iconfont ion-iosyou"></span>
+                    </div>
+                </ion-item>
+            </ion-list>
+    </div>
+
+    <!-- 关于我们 -->
+    <div class="about--us" *ngIf="type == '4'">
+        <img class="about-us-one" src="../../../assets//img/logo_name.png" alt="">
+        <img class="about-us-two" src="../../../assets/img/zi.png" alt="">
+        <img class="about-us-three" src="../../../assets/img/ren.png" alt="">
+        <img class="about-us-four" src="../../../assets/img/erweima.png" alt="">
+    </div>
+
+    <div class="give--opinion" *ngIf="type == '5'">
+        <iframe src="https://support.qq.com/products/46942" frameborder="0" scrolling="no"></iframe>
+    </div>
+</ion-content>

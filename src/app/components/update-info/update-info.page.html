@@ -1,0 +1,49 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-back-button icon="myleft" slot="start"></ion-back-button>
+        <ion-title>{{title}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="update--info">
+    <div class="update--sign" *ngIf="type == '1'">
+        <ion-textarea [(ngModel)]="userInfo.sign" maxlength="30" placeholder="个性签名" rows="4" class="sign--textarea"></ion-textarea>
+        <span class="size--tip">{{userInfo.sign ? userInfo.sign.length : 0 }}/30</span>
+    </div>
+    <div class="update--username" *ngIf="type == '2'">
+        <ion-input type="text" [(ngModel)]="userInfo.username" placeholder="请输入用户名" clearInput="true" class="username--input"></ion-input>
+    </div>
+    <div class="update--realName" *ngIf="type == '3'">
+        <ion-input type="text" [(ngModel)]="userInfo.fullName" placeholder="请输入真实姓名" clearInput="true" class="username--input"></ion-input>
+    </div>
+    <div class="update--sex" *ngIf="type == '4'">
+        <ion-list>
+            <ion-radio-group name="auto" [(ngModel)]="userInfo.sex">
+                <ion-item>
+                    <ion-label>男</ion-label>
+                    <ion-radio value="1"></ion-radio>
+                </ion-item>
+                <ion-item>
+                    <ion-label>女</ion-label>
+                    <ion-radio value="2"></ion-radio>
+                </ion-item>
+            </ion-radio-group>
+        </ion-list>
+    </div>
+    <div class="update--phone" *ngIf="type == '5'">
+        <ion-input type="text" [(ngModel)]="userInfo.mobile" placeholder="请输入手机号" clearInput="true" class="username--input"></ion-input>
+    </div>
+    <div class="update--email" *ngIf="type == '6'">
+        <ion-input type="text" [(ngModel)]="userInfo.email" placeholder="请输入邮箱" clearInput="true" class="username--input"></ion-input>
+    </div>
+    <div class="update--sign" *ngIf="type == '7'">
+        <ion-textarea [(ngModel)]="schoolInfo.slogan" maxlength="20" placeholder="请输入学校口号" rows="4" class="sign--textarea"></ion-textarea>
+        <span class="size--tip">{{schoolInfo.slogan.length}}/20</span>
+    </div>
+    <div class="update--email" *ngIf="type == '8'">
+        <ion-textarea [(ngModel)]="classInfo.slogan" maxlength="20" placeholder="请输入班级口号" rows="4" class="sign--textarea"></ion-textarea>
+    </div>
+    <div class="update--save">
+        <ion-button (click)="updateInfo()" expand="block" class="save--but">保 存</ion-button>
+    </div>
+</ion-content>

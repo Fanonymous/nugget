@@ -1,0 +1,45 @@
+.my--center{
+    --background: #f8f9fb; 
+}
+.center--header::after{
+    height: 0;
+}
+.person--info--list{
+    padding-top: 0;
+}
+.list-icon{
+    color: #a0c1fb;
+    padding: 0 5px;
+}
+.logout--operate{
+    background-color: #fff;
+    margin-top: 10px;
+    padding: 10px 0;
+    font-size: 18px;
+    color: #F56C6C;
+    text-align: center;
+}
+.first--item{
+    --background: url('../../assets/img/bg1.png');
+    background-size: 100% 100%;
+}
+.person--name{
+    padding-left: 15px;
+    color: #fff;
+    div{
+        line-height: 30px;
+    }
+}
+.center-sign--box{
+    font-size: 12px;
+    display: flex;
+    .center-sign--res{
+        max-width: 80%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+.switch--but{
+    --color:#fff;
+}

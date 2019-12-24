@@ -1,0 +1,27 @@
+<ion-header>
+    <ion-toolbar color="primary">
+      <ion-back-button icon="myleft" slot="start"></ion-back-button>
+      <ion-title>切换角色</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content>
+    <div class="switch-header">
+        <ion-avatar style="margin: 0 auto;">
+            <img src="../../../assets/img/avatar.png">
+        </ion-avatar>
+        <div>更加快乐的课堂</div>
+    </div>
+    <div class="switch-content">
+        <div class="switch--item" *ngFor="let item of info" [ngClass]="{'isCurrent' : item.userType == userType}" (click)="switchType(item.userType)">
+            <ion-avatar>
+                <img src="../../../assets/img/switch3.png" *ngIf="item.userType == 1">
+                <img src="../../../assets/img/switch0.png" *ngIf="item.userType == 2">
+                <img src="../../../assets/img/switch2.png" *ngIf="item.userType == 3">
+                <img src="../../../assets/img/switch1.png" *ngIf="item.userType == 4">
+            </ion-avatar>
+            <div class="tip-des">我是一位 {{item.userTypeName}}</div>
+        </div>
+        
+    </div>
+</ion-content>
