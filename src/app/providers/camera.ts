@@ -60,11 +60,11 @@ export class camera {
                 }
             }).catch(err => {
                 if (err == 20) {
-                    this.helper.toast('没有权限,请在设置中开启权限');
+                    this.helper.message('没有权限,请在设置中开启权限');
                 } else if (String(err).indexOf('cancel') != -1) {
-                    console.log('用户点击了取消按钮');
+                   
                 } else {
-                    this.helper.toast('获取照片失败');
+                    
                 }
                 observer.error(false);
             });
@@ -99,7 +99,6 @@ export class camera {
                 }
                 }
             }).catch(err => {
-                this.helper.toast('获取照片失败');
                 observer.error(false);
             });
         });

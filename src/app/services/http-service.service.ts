@@ -166,7 +166,7 @@ export class HttpServiceService extends HttpHelper{
         const errData = err.error;
         //  401 token无效或过期需要重新登录
         if (errData.code === 401) {
-            this.helper.toast('密码已过期,请重新登录');
+            this.helper.message('密码已过期,请重新登录');
         } else {
             this.helper.alert('提示', errData.msg || msg);
         }
@@ -178,7 +178,7 @@ export class HttpServiceService extends HttpHelper{
         this.helper.alert('提示', '请求超时,请稍后再试!');
     } else {
         if (status === 0) {
-            msg = '可能后台服务未启用';
+            msg = '服务器开小差了...';
         } else if (status === 404) {
             msg = status + ' 未找到请求地址';
         } else if (status === 500) {

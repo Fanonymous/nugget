@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActionSheetController } from '@ionic/angular';
 import { Router, NavigationExtras} from '@angular/router';
+import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser/ngx';
 
 import { Storage } from '../providers/Storage';
 
@@ -38,7 +39,8 @@ export class MycenterPage {
         public camera : camera,
         public fileService : FileService,
         public eventService : EventService,
-        public router : Router) { }
+        public router : Router,
+        public themeableBrowser: ThemeableBrowser) { }
 
     ngOnInit() {
         this.initUserInfo()
@@ -94,7 +96,7 @@ export class MycenterPage {
                             Storage.localStorage.remove('userId')
                             self.navController.navigateForward(['login'])
                         }else {
-                            self.helper.toast(res.msg)
+                            self.helper.message(res.msg)
                         }
                     })
                 }
@@ -110,7 +112,7 @@ export class MycenterPage {
     }
 
     updatePass() {
-        this.helper.toast('请联系管理员')
+        this.helper.message('请联系管理员')
     }
 
     async addPicture() {
@@ -170,7 +172,7 @@ export class MycenterPage {
                     }
                     return this.http.post('uc/user/update', obj)
                 }else {
-                    this.helper.toast(url.msg)
+                    this.helper.message(url.msg)
                     return of(-1)
                 }
             })).subscribe(res => {
@@ -179,11 +181,11 @@ export class MycenterPage {
                         if (data.code == 0) {
                             Storage.localStorage.set('userInfo', JSON.stringify(data.user))
                         }else {
-                            this.helper.toast(res.msg)
+                            this.helper.message(res.msg)
                         }
                     })
                 }else {
-                    this.helper.toast(res.msg)
+                    this.helper.message(res.msg)
                 }
         })
     }
@@ -201,12 +203,46 @@ export class MycenterPage {
                     }
                     self.router.navigate(['/setting'], obj)
                 }else {
-                    self.helper.toast('暂无班级')
+                    self.helper.message('暂无班级')
                 }
             }else {
-                self.helper.toast(res.msg)
+                self.helper.message(res.msg)
             }
         })
+    }
+
+    handleOpen() {
+        const options: ThemeableBrowserOptions = {
+            statusbar: {
+                color: '#007aff'
+            },
+            toolbar: {
+                height: 40,
+                color: '#007aff'
+            },
+            title: {
+                color: '#ffffff',
+                showPageTitle: true,
+                staticText : '意见反馈'
+            },
+            backButton: {
+                wwwImage: 'assets/img/back.png',
+                imagePressed: 'back_pressed',
+                align: 'left',
+                event: 'backPressed'
+            },
+            customButtons: [
+                {
+                    image: 'share',
+                    imagePressed: 'share_pressed',
+                    align: 'right',
+                    event: 'sharePressed'
+                }
+            ],
+            backButtonCanClose: true
+       }
+       
+       const browser: ThemeableBrowserObject = this.themeableBrowser.create('https://support.qq.com/products/46942', '_blank', options)
     }
 
 }

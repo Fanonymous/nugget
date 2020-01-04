@@ -34,7 +34,7 @@ export class LoginPage implements OnInit {
 
     handleLogin() {
         if (!this.username && !this.password) {
-            this.helper.toast('请填写用户名和密码')
+            this.helper.message('请填写用户名和密码')
         }else {
             this.http.post('sys/login', {
                 appType : 5,
@@ -60,18 +60,18 @@ export class LoginPage implements OnInit {
                             Storage.localStorage.set('userId', _userId)
                             this.getMenuList()
                         }else {
-                            this.helper.toast(data.msg)
+                            this.helper.message(data.msg)
                         }
                     })
                 }else {
-                    this.helper.toast(res.msg)
+                    this.helper.message(res.msg)
                 }
             })
         }
     }
 
     forgetPass() {
-        this.helper.toast('请联系管理员')
+        this.helper.message('请联系管理员')
     }
 
 }

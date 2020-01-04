@@ -57,7 +57,7 @@ export class AnalysisPage implements OnInit {
                     this.percentage = res.average.scale
                     this.level = res.page.xValue[parseInt(res.average.rate) - 1]
                 }else {
-                    this.helper.toast(res.msg)
+                    this.helper.message(res.msg)
                 }
             })
         }else {
@@ -89,7 +89,7 @@ export class AnalysisPage implements OnInit {
                 this.teacherBottomObj = res.list[0]
                 this.level1 = this.levelArr[parseInt(res.list[0].rate) - 1]
             }else {
-                this.helper.toast(res.msg)
+                this.helper.message(res.msg)
             }
         })
     }
@@ -100,14 +100,14 @@ export class AnalysisPage implements OnInit {
                 res.page.list[0] && (this.educationObj = res.page.list[0])
                 this.educationObj.img && (this.img2 = this.baseApi + this.educationObj.img)
             }else {
-                this.helper.toast(res.msg)
+                this.helper.message(res.msg)
             }
         })
         this.http.get('WechatAppletAnalysis/equipFlow', {page : 1, limit: 20}).subscribe(res => {
             if (res.code == 0) {
                 this.netObj = res.page
             }else {
-                this.helper.toast(res.msg)
+                this.helper.message(res.msg)
             }
         })
     }

@@ -71,11 +71,11 @@ export class UpdateInfoPage {
             })
         }else {
             if (this.type == '5' && !/^[1](([3][0-9])|([4][5-9])|([5][0-3,5-9])|([6][5,6])|([7][0-8])|([8][0-9])|([9][1,8,9]))[0-9]{8}$/.test(this.userInfo.mobile)) {
-                this.helper.toast('手机号有误！')
+                this.helper.message('手机号有误！')
                 return
             }
             if (this.type == '6' && !/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/.test(this.userInfo.email)) {
-                this.helper.toast('邮箱有误！')
+                this.helper.message('邮箱有误！')
                 return
             }
             let obj = {
@@ -95,7 +95,7 @@ export class UpdateInfoPage {
                     this.eventService.event.emit('useraction')
                     this.navController.back()
                 }else {
-                    this.helper.toast(res.msg)
+                    this.helper.message(res.msg)
                 }
             })
         }

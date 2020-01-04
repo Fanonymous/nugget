@@ -21,7 +21,7 @@ export class Helper {
     constructor(public platform: Platform,
                 public alertController: AlertController,
                 public loadingController: LoadingController,
-                public toastController: ToastController) {
+                public toastController: ToastController,) {
         this.IsMobile = this.platform.is('cordova');
     }
 
@@ -61,7 +61,7 @@ export class Helper {
      */
     assertIsMobile(): void {
         if (this.isNotMobile()) {
-            this.toast('请使用真机调试');
+            this.message('请使用真机调试');
             throw new Error('请使用真机调试');
         }
     }
@@ -70,7 +70,7 @@ export class Helper {
      * tip 开发中
      */
     tipDev() {
-        this.toast('开发中');
+        this.message('开发中');
     }
 
     /**
@@ -119,9 +119,32 @@ export class Helper {
      * 显示提示信息
      * 建议优先调用 NativeService.toast
      */
-    async toast(message: string = '操作成功', duration: number = 500, position: 'top' | 'bottom' | 'middle' = 'bottom'){
+    async toast(message: string = '操作成功', duration: number = 500, position: 'top' | 'bottom' | 'middle' = 'middle'){
         const opts = {message, duration, position, showCloseButton: false, closeButtonText: '✖', cssClass: 'commonToast'};
         this.toastController.create(opts).then(toast => toast.present());
+    }
+    
+    message(message, position = 'm') {
+        let div = document.createElement('div')
+        div.id = 'messageMy'
+        position == 'm' ? div.classList.add('message-wrapper') : div.classList.add('message-wrapper--bottom')
+        let span = document.createElement('span')
+        span.innerHTML = message
+        div.appendChild(span)
+        let app = document.getElementsByTagName('ion-app')[0]
+        let isExist = document.getElementById('messageMy'), timer : any
+        if (isExist) {
+            isExist.remove()
+            clearTimeout(timer)
+            timer = null
+        }
+        app.appendChild(div)
+        isExist = document.getElementById('messageMy')
+        timer = setTimeout(() => {
+            isExist.remove()
+            clearTimeout(timer)
+            timer = null
+        }, 500);
     }
 
     /**

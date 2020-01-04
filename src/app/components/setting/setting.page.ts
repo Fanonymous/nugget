@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActionSheetController } from '@ionic/angular';
 import { Router, ActivatedRoute, NavigationExtras} from '@angular/router';
 
+
 import { environment } from '../../../environments/environment'
 import { Storage } from '../../providers/Storage'
 import { NativeService } from '../../providers/NativeService'
@@ -65,7 +66,6 @@ export class SettingPage implements OnInit {
             this.type == '2' && (this.title = '我的学校', this.getSchoolData())
             this.type == '3' && (this.title = '我的班级', this.getClassData())
             this.type == '4' && (this.title = '关于纳智')
-            this.type == '5' && (this.title = '意见反馈')
             res.classInfo && (this.classTemp = JSON.parse(res.classInfo))
         })
         this.eventService.event.on('useraction', () => {
@@ -102,7 +102,7 @@ export class SettingPage implements OnInit {
                     this.classObj[item.classId] = item
                 }
             }else {
-                this.helper.toast(res.msg)
+                this.helper.message(res.msg)
             }
         })
     }
@@ -196,7 +196,7 @@ export class SettingPage implements OnInit {
                     }
                     return this.http.post('uc/user/update', obj)
                 }else {
-                    this.helper.toast(url.msg)
+                    this.helper.message(url.msg)
                     return of(-1)
                 }
             })).subscribe(res => {
@@ -206,11 +206,11 @@ export class SettingPage implements OnInit {
                             Storage.localStorage.set('userInfo', JSON.stringify(data.user))
                             this.eventService.event.emit('useraction');
                         }else {
-                            this.helper.toast(res.msg)
+                            this.helper.message(res.msg)
                         }
                     })
                 }else {
-                    this.helper.toast(res.msg)
+                    this.helper.message(res.msg)
                 }
         })
     }
@@ -234,16 +234,20 @@ export class SettingPage implements OnInit {
                     }
                     return this.http.post('WechatAppletTeaching/update/schoolInfo', obj)
                 }else {
-                    this.helper.toast(url.msg)
+                    this.helper.message(url.msg)
                     return of(-1)
                 }
             })).subscribe(res => {
                 if (res.code == 0) {
-                    
+                    if (num == 1) {
+                        this.schoolInfo.img = this.schoolAvater.split('?fileName=')[1]
+                    }else {
+                        this.schoolInfo.backgroundPicture = this.schoolBackground.split('?fileName=')[1]
+                    }
                 }else {
-                    this.helper.toast(res.msg)
+                    this.helper.message(res.msg)
                 }
-        })
+            })
     }
 
     saveClassInfo(img, num) {
@@ -265,14 +269,18 @@ export class SettingPage implements OnInit {
                     }
                     return this.http.post('WechatAppletTeaching/update/info', obj)
                 }else {
-                    this.helper.toast(url.msg)
+                    this.helper.message(url.msg)
                     return of(-1)
                 }
             })).subscribe(res => {
                 if (res.code == 0) {
-                    
+                    if (num == 1) {
+                        this.classObj[this.className].img = this.classAvater.split('?fileName=')[1]
+                    }else {
+                        this.classObj[this.className].backgroundPicture = this.classBackground.split('?fileName=')[1]
+                    }
                 }else {
-                    this.helper.toast(res.msg)
+                    this.helper.message(res.msg)
                 }
         })
     }
@@ -287,8 +295,4 @@ export class SettingPage implements OnInit {
         this.router.navigate(['/update-info'], obj)
     }
 
-    complaintsInit() {
-        let url : any = 'https://support.qq.com/products/46942'
-        window.location = url
-    }
 }

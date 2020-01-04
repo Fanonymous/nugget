@@ -22,6 +22,8 @@ import { Camera } from '@ionic-native/camera/ngx';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { Crop } from '@ionic-native/crop/ngx';
 import { Base64 } from '@ionic-native/base64/ngx';
+import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser/ngx';
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 
 //引入路由配置文件和根组件
 import { AppRoutingModule } from './app-routing.module';
@@ -39,7 +41,7 @@ var vConsole = new VConsole();
         BrowserModule, 
         HttpClientModule, 
         IonicModule.forRoot(), 
-        AppRoutingModule,
+        AppRoutingModule
     ],
     providers: [           //配置服务
         StatusBar,
@@ -54,7 +56,9 @@ var vConsole = new VConsole();
         Camera,
         ImagePicker,
         Crop,
-        Base64
+        Base64,
+        ThemeableBrowser,
+        AndroidPermissions,
     ],
     bootstrap: [AppComponent]
 })

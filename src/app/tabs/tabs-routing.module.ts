@@ -46,17 +46,12 @@ const routes: Routes = [
               import('../mycenter/mycenter.module').then(m => m.MycenterPageModule)
           }
         ]
-      },
-      {
-        path: '',
-        redirectTo: 'tabs/analysis',
-        pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: 'tabs/analysis',
+    redirectTo: '/tabs/analysis',
     pathMatch: 'full'
   }
 ];

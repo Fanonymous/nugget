@@ -25,8 +25,8 @@ const devServers = {
 
 const prodServers = {
     appMedia : prodBase,
-    appServerUrl : prodBase + 'diama-media/',
-    fileServerUrl : prodBase + 'diama-media/file/common/getFile?fileName=',
+    appServerUrl : prodBase + 'iConductor-media/',
+    fileServerUrl : prodBase + 'iConductor-media/file/common/getFile?fileName=',
     requestTimeout : 6000 * 3,
     rsaPublicKey: 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCPzCRijQTW+fxen+IgGddcA+lQLQ9c3LdwKfR7CHK+LWQ1oMfkN69xoWOTs2Sk77vJ' +
         '86i/bn7jOmn6lQAqNndET80vhqFBV2r/0n0cZVke3vFZTVLd/hEfotIsRo4HbCPwK0UwA1LuuEsr7fqgHG1RKnK/SFLYBmgg85IE6PP8gwIDAQAB'
