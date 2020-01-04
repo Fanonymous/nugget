@@ -31,7 +31,7 @@ export class AppComponent {
         private androidPermissions : AndroidPermissions,
         private native : NativeService
     ) {
-        this.initializeApp();
+        this.initializeApp()
     }
 
     initializeApp() {
@@ -81,9 +81,21 @@ export class AppComponent {
 
     permissions() {
         this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.CAMERA).then(
-            result => console.log('Has permission?',result.hasPermission),
-            err => this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.CAMERA)
-          );
+            result => {
+                if (!result.hasPermission) {
+                    this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.CAMERA, this.androidPermissions.PERMISSION.WRITE_EXTERNAL_STORAGE])
+                }
+            },
+            err => this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.CAMERA, this.androidPermissions.PERMISSION.WRITE_EXTERNAL_STORAGE])
+        )
+
+        this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.GET_ACCOUNTS).then(res => {
+            if (!res.hasPermission) {
+                this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.GET_ACCOUNTS)
+            }
+        }, err => {
+            this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.GET_ACCOUNTS)
+        })
     }
 
     @HostListener('document:ionBackButton', ['$event'])
@@ -91,7 +103,7 @@ export class AppComponent {
         $event.detail.register(100, async () => {
             if (this.router.url == '/tabs/infomation' || this.router.url == '/tabs/teaching' || this.router.url == '/tabs/analysis' || this.router.url == '/tabs/mycenter') {
                 if (!this.exitapp) {
-                    this.helper.message('再按一次退出应用程序')
+                    this.helper.message('再按一次退出应用程序', 'b')
                     this.exitapp = true
                     let timer = setTimeout(() => {
                         this.exitapp = false
@@ -101,6 +113,8 @@ export class AppComponent {
                     return
                 }
                 this.exitapp = false
+                this.native.appMinimize()
+            }else if (this.router.url == '/login')  {
                 this.native.appMinimize()
             }else {
                 this.navController.back()

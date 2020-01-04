@@ -16,6 +16,7 @@ export class UpdateInfoPage {
     public title : String
     public type : String
     public userInfo : any
+    public sex : any
     public schoolInfo : any = { img : '', backgroundPicture : '', slogan : '' }
     public classInfo :any
     constructor(
@@ -45,8 +46,8 @@ export class UpdateInfoPage {
                 res.info && (this.classInfo = JSON.parse(res.info))
             }
         })
-
         let info = JSON.parse(Storage.localStorage.get('userInfo'))
+        info.sex ? this.sex = info.sex + '' : this.sex = info.sex
         this.userInfo = info
     }
 
@@ -83,7 +84,7 @@ export class UpdateInfoPage {
                 username : this.userInfo.username,
                 fullName : this.userInfo.fullName,
                 imageUrl : this.userInfo.imageUrl,
-                sex : this.userInfo.sex,
+                sex : this.sex + '',
                 backgroundPicture : '',
                 mobile : this.userInfo.mobile,
                 email : this.userInfo.email,

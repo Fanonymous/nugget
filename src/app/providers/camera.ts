@@ -60,7 +60,7 @@ export class camera {
                 }
             }).catch(err => {
                 if (err == 20) {
-                    this.helper.message('没有权限,请在设置中开启权限');
+                    this.helper.message('没有权限,请在应用管理中开启权限');
                 } else if (String(err).indexOf('cancel') != -1) {
                    
                 } else {

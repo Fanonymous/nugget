@@ -192,7 +192,8 @@ export class SettingPage implements OnInit {
                         sign : this.userInfo.sign,
                         userId : this.userInfo.userId,
                         userNum : this.userInfo.userNum,
-                        username : this.userInfo.username
+                        username : this.userInfo.username,
+                        sex : this.userInfo.sex
                     }
                     return this.http.post('uc/user/update', obj)
                 }else {
