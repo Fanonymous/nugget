@@ -92,6 +92,7 @@ export class MycenterPage {
                             Storage.localStorage.remove('userInfo')
                             Storage.localStorage.remove('menuList')
                             Storage.localStorage.remove('deptId')
+                            Storage.localStorage.remove('deptType')
                             Storage.localStorage.remove('userType')
                             Storage.localStorage.remove('userId')
                             self.navController.navigateForward(['login'])

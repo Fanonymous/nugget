@@ -1,9 +1,56 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>纳智助手</ion-title>
-  </ion-toolbar>
+    <ion-toolbar class="info--toolbar" color="primary">
+        <div class="toolbar--title">工作台</div>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-        <div style="height:100%;display: flex;align-items: center;justify-content: center;">开发中，尽请期待...</div>
+    <div class="work-menu">
+        <ion-grid fixed>
+            <ion-row>
+                <ion-col *ngFor="let item of menuList" size="3">
+                    <div class="menu--item" (click)="linkTo(item)">
+                        <img [src]="item.url">
+                        <div>{{item.label}}</div>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+
+    <div class="school-timetable">
+        <div class="time--title">
+            <div>
+                <span style="font-size: 20px; font-weight: bold;">我的课表</span>
+                <span style="padding-left: 10px;">{{weekDay}}</span>
+            </div>
+            <div>
+                <span>更多>></span>
+            </div>
+        </div>
+        <div class="time--content">
+            <ion-grid fixed>
+                <ion-row *ngFor="let value of currentTimeTable">
+                    <ion-col size="3.5">
+                        <div style="text-align: center;">
+                            <div>{{value.order}}</div>
+                            <div>{{value.classTime}}</div>
+                        </div>
+                    </ion-col>
+                    <ion-col size="4.5">
+                        <div style="text-align: center;">{{value.courseName}}</div>
+                    </ion-col>
+                    <ion-col size="4">
+                        <div style="text-align: center;">{{value.className}}</div>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </div>
+    </div>
+
+    <div class="bottom--tip">
+        <div class="bottom--line"></div>
+        <div style="padding: 0 10px;">到底了</div>
+        <div class="bottom--line"></div>
+    </div>
 </ion-content>

@@ -25,15 +25,22 @@ export class SwitchIdentityPage implements OnInit {
     switchType(n) {
         let obj = JSON.parse(Storage.localStorage.get('userInfo'))
         obj.userType = n
-        let userArr = obj.userInfo, _deptId : any
+        let userArr = obj.userInfo, 
+            _deptId: any, 
+            _deptType: any,
+            _deptName: any
         for (let item of userArr) {
             if (item.userType == n) {
                 _deptId = item.deptIds
+                _deptType = item.deptTypes
+                _deptName = item.deptName
                 break
             }
         }
         Storage.localStorage.set('userInfo', JSON.stringify(obj))
         Storage.localStorage.set('userType', n)
+        Storage.localStorage.set('deptType', _deptType)
+        Storage.localStorage.set('deptName', _deptName)
         Storage.localStorage.set('deptId', _deptId)
         this.eventService.event.emit('useraction')
         this.navController.back()

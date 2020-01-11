@@ -1,0 +1,50 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button text="课程表" icon="myleft"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="time-table--wrapper">
+       <div class="tabs-top">
+           <div class="tabs--title-item" [ngClass]="{'current-select': index == 1}" (click)="index = 1">我的课表</div>
+           <div class="tabs--title-item" [ngClass]="{'current-select': index == 2}" (click)="index = 2">班级课表</div>
+           <div class="tabs--title-item" [ngClass]="{'current-select': index == 3}" (click)="index = 3">教师课表</div>  
+       </div>
+       <div class="total--sub">
+           <span>共8节课</span>
+       </div>
+
+       <div class="course--content">
+           <div class="week-title">
+               <div class="week-title--item">日</div>
+               <div class="week-title--item">一</div>
+               <div class="week-title--item">二</div>
+               <div class="week-title--item">三</div>
+               <div class="week-title--item">四</div>
+               <div class="week-title--item">五</div>
+               <div class="week-title--item">六</div>
+           </div>
+           <div class="week-course">
+                <ion-grid fixed>
+                    <ion-row *ngFor="let value of currentTimeTable">
+                        <ion-col size="3.5">
+                            <div style="text-align: center;font-size: 14px;">
+                                <div>{{value.order}}</div>
+                                <div>{{value.classTime}}</div>
+                            </div>
+                        </ion-col>
+                        <ion-col size="4.5">
+                            <div style="text-align: center;font-size: 14px;">{{value.courseName}}</div>
+                        </ion-col>
+                        <ion-col size="4">
+                            <div style="text-align: center;font-size: 14px;">{{value.className}}</div>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+           </div>
+       </div>
+    </div>
+</ion-content>

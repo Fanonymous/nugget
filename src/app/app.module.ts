@@ -2,6 +2,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
+import { FormsModule } from '@angular/forms'
 
 //引入使用模块，http
 import { HttpClientModule } from '@angular/common/http';
@@ -22,8 +23,9 @@ import { Camera } from '@ionic-native/camera/ngx';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { Crop } from '@ionic-native/crop/ngx';
 import { Base64 } from '@ionic-native/base64/ngx';
-import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser/ngx';
+import { ThemeableBrowser } from '@ionic-native/themeable-browser/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+import { QRScanner } from '@ionic-native/qr-scanner/ngx';
 
 //引入路由配置文件和根组件
 import { AppRoutingModule } from './app-routing.module';
@@ -41,7 +43,8 @@ var vConsole = new VConsole();
         BrowserModule, 
         HttpClientModule, 
         IonicModule.forRoot(), 
-        AppRoutingModule
+        AppRoutingModule,
+        FormsModule
     ],
     providers: [           //配置服务
         StatusBar,
@@ -59,6 +62,7 @@ var vConsole = new VConsole();
         Base64,
         ThemeableBrowser,
         AndroidPermissions,
+        QRScanner,
     ],
     bootstrap: [AppComponent]
 })

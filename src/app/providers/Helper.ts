@@ -81,7 +81,7 @@ export class Helper {
      * @param okBackFun 成功回调
      * @param cancelBtnFun 失败回调
      */
-    alert(header = '', message = '', okBackFun = null, cancelBtnFun = null): void {
+    alert(header = '', message = '', okBackFun = null, cancelBtnFun = null, cssClass = ''): void {
         // alertController.create是异步方法，所以使用AlertIsExist标志是否打开
         if (this.AlertIsExist) {
             Logger.log('alert已经存在，禁止重复打开');
@@ -111,7 +111,8 @@ export class Helper {
         this.alertController.create({
             header,
             message,
-            buttons
+            buttons,
+            cssClass
         }).then(alert => alert.present());
     }
 

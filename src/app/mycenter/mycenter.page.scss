@@ -1,8 +1,11 @@
-.my--center{
-    --background: #f8f9fb; 
-}
 .center--header::after{
     height: 0;
+}
+.info--toolbar{
+    --padding-end: 20px;
+}
+.toolbar--title{
+    padding-left: 20px;
 }
 .person--info--list{
     padding-top: 0;

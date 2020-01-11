@@ -205,7 +205,7 @@ export class SettingPage implements OnInit {
                     this.http.get(`uc/user/userInfo?userId=${this.userInfo.userId}`).subscribe(data => {
                         if (data.code == 0) {
                             Storage.localStorage.set('userInfo', JSON.stringify(data.user))
-                            this.eventService.event.emit('useraction');
+                            this.eventService.event.emit('useraction')
                         }else {
                             this.helper.message(res.msg)
                         }
@@ -294,6 +294,18 @@ export class SettingPage implements OnInit {
             }
         }
         this.router.navigate(['/update-info'], obj)
+    }
+
+    refreshPersonMess(event) {
+        this.http.get(`uc/user/userInfo?userId=${this.userInfo.userId}`).subscribe(data => {
+            if (data.code == 0) {
+                Storage.localStorage.set('userInfo', JSON.stringify(data.user))
+                this.initUserInfo()
+            }else {
+                this.helper.message(data.msg)
+            }
+            event.target.complete()
+        })
     }
 
 }

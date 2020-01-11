@@ -1,9 +1,12 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>纳智助手</ion-title>
+  <ion-toolbar class="info--toolbar" color="primary">
+        <div class="toolbar--title">消息</div>
+        <ion-icon slot="end" name="myscanner" [routerLink]="[ '/qrscanner']"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <!-- <div (click)="handleClick()">测试</div> -->
+    <div [routerLink]="[ '/qrscanner-bind']">测试</div>
     <div style="height:100%;display: flex;align-items: center;justify-content: center;">开发中，尽请期待...</div>
 </ion-content>

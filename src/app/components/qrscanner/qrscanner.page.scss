@@ -1,0 +1,80 @@
+.scanner{
+    --background: none transparent !important;
+    background: none transparent !important;
+    --color: white;
+    ion-icon{ 
+        color: white;
+        font-size: 18px;
+    }
+}
+.scanner--box{
+    height: 100%;
+}
+.login-scanner-after{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    .after--box{
+        width: 90%;
+    }
+}
+.scanner-button-bottom{
+    position: absolute;
+    bottom: 45px;
+    left: auto;
+    right: auto;
+    width: 100%;
+    text-align: center;
+    .qr-scanner-button{
+        width: 50px;
+        height: 50px;
+        border-radius: 100%;
+        margin: 0 20px;
+        background: rgba(0, 0, 0, 0.3);
+    }
+}
+.qr-scanner-area{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: calc(100% - 45px - 103px);
+    background: url('../../../assets/img/scanner.svg') no-repeat center ;
+    background-size: 100% 100%;
+    .lines{
+        width: 50%;
+        height: 2px;
+        position: absolute;
+        background: var(--ion-color-primary);
+        animation: myfirst 2s linear infinite alternate;
+    }
+    @keyframes myfirst {
+        0% {
+            top: 22%;
+        }
+        25% {
+            top: 27%;
+        }
+        50% {
+            top: 32%;
+        }
+        75% {
+            top: 37%;
+        }
+        100% {
+            top: 44%;
+        }
+    }
+}
+.account--mess{
+    color: #999999;
+    margin: 0 auto;
+    padding: 20px 0 40px 0;
+}
+.cancel--button{
+    color: #333;
+    line-height: 36px;
+    margin-top: 10px;
+}

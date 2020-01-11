@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.nugget.diama" version="1.1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.nugget.diama" version="1.1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>纳智助手</name>
     <description>nugget helper</description>
-    <author email="hi@ionicframework.com" href="http://ionicframework.com/">fujian guo</author>
+    <author email="337045342@qq.com" href="http://ionicframework.com/">fujian guo</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
@@ -22,6 +22,7 @@
     <preference name="StatusBarBackgroundColor" value="#007aff" />
     <preference name="AndroidPersistentFileLocation" value="Compatibility" />
     <preference name="iosPersistentFileLocation" value="Compatibility" />
+    <preference name="Orientation" value="portrait" />
     <platform name="android">
         <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application" xmlns:android="http://schemas.android.com/apk/res/android">
             <application android:networkSecurityConfig="@xml/network_security_config" />
@@ -98,6 +99,10 @@
     </platform>
     <config-file parent="NSCameraUsageDescription" platform="ios" target="*-Info.plist">
         <string>You can take photos</string>
+    </config-file>
+    <config-file parent="/*" target="AndroidManifest.xml">
+        <uses-permission android:name="android.permission.CAMERA" />
+        <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     </config-file>
     <plugin name="cordova-plugin-whitelist" spec="1.3.3" />
     <plugin name="cordova-plugin-statusbar" spec="2.4.2" />

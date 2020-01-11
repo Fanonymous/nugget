@@ -32,6 +32,14 @@ const routes: Routes = [
     {
         path: 'switch-identity',
         loadChildren: () => import('./components/switch-identity/switch-identity.module').then( m => m.SwitchIdentityPageModule)
+    },
+    {
+        path: 'qrscanner',
+        loadChildren: () => import('./components/qrscanner/qrscanner.module').then( m => m.QrscannerPageModule)
+    },
+    {
+        path: 'qrscanner-bind',
+        loadChildren: () => import('./components/qrscanner-bind/qrscanner-bind.module').then( m => m.QrscannerBindPageModule)
     }
 ];
 

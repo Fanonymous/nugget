@@ -7,6 +7,14 @@
 </ion-header>
 
 <ion-content class="my--setting">
+    <ion-refresher slot="fixed" (ionRefresh)="refreshPersonMess($event)">
+        <ion-refresher-content
+            pullingIcon="arrow-dropdown"
+            pullingText="释放立即刷新"
+            refreshingSpinner="circles"
+            refreshingText="正在刷新">
+        </ion-refresher-content>
+    </ion-refresher>
     <div class="all--mess" *ngIf="type == '1'">
         <ion-list class="person--info--list" lines="inset">
             <ion-item>

@@ -46,18 +46,27 @@ export class LoginPage implements OnInit {
                     Storage.localStorage.set('token', res.token)
                     this.http.get(`uc/user/userInfo?userId=${res.userInfo.userId}`).subscribe(data => {
                         if (data.code == 0) {
-                            let _obj : any = data.user
-                            let _userType : any = _obj.userType, _userId : any = _obj.userId, userInfoArr : any = _obj.userInfo, _deptId : any
+                            let _obj: any = data.user
+                            let _userType: any = _obj.userType, 
+                                _userId: any = _obj.userId, 
+                                userInfoArr : any = _obj.userInfo, 
+                                _deptId : any, _deptType: any, 
+                                _deptName: any
                             for (let item of userInfoArr) {
                                 if (item.userType == _userType) {
                                     _deptId = item.deptIds
+                                    _deptType = item.deptTypes
+                                    _deptName = item.deptName
                                     break
                                 }
                             }
                             Storage.localStorage.set('userInfo', JSON.stringify(data.user))
                             Storage.localStorage.set('deptId', _deptId)
+                            Storage.localStorage.set('deptType', _deptType)
+                            Storage.localStorage.set('deptName', _deptName)
                             Storage.localStorage.set('userType', _userType)
                             Storage.localStorage.set('userId', _userId)
+                            Storage.localStorage.set('userName', _obj.username)
                             this.getMenuList()
                         }else {
                             this.helper.message(data.msg)

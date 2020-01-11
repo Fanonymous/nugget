@@ -1,0 +1,84 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start" *ngIf="!isSuccess">
+            <ion-back-button *ngIf="!isSuccess" text="授权绑定" icon="myleft"></ion-back-button>
+        </ion-buttons>
+        <ion-label *ngIf="isSuccess" slot="start" style="padding-left: 15px" [routerLink]="[ '/tabs/infomation']"><ion-icon name="close"></ion-icon></ion-label>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div *ngIf="!isSuccess">
+        <form #bindForm="ngForm">
+            <ion-list>
+                <ion-item>
+                    <ion-label required>所属学校</ion-label>
+                    <ion-select [(ngModel)]="model.deptId" (ionChange)="handleChange()" name="school" #deptId="ngModel" required interface="alert" placeholder="请选择所属学校" cancelText="取消" okText="确定">
+                        <ion-select-option *ngFor="let item of schoolList" [value]="item.deptId">{{item.name}}</ion-select-option>
+                    </ion-select>
+                </ion-item>
+                <div [hidden]="deptId.valid || deptId.untouched" class="alert-danger">所属学校必选</div>
+                <ion-item>
+                    <ion-label required>所属教室</ion-label>
+                    <ion-select [(ngModel)]="model.classroomId" (ionChange)="handleClassChange()" name="classRoom" #classroomId="ngModel" required interface="alert" placeholder="请选择所属教室" cancelText="取消" okText="确定">
+                        <ion-select-option *ngFor="let item of classList" [value]="item.classroomId">{{item.classroomName}}</ion-select-option>
+                    </ion-select>
+                </ion-item>
+                <div [hidden]="classroomId.valid || classroomId.untouched" class="alert-danger">所属教室必选</div>
+                <ion-item>
+                    <ion-label required>设备类型</ion-label>
+                    <ion-select [(ngModel)]="model.deviceId" (ionChange)="handleTypeChange()" name="device" #deviceId="ngModel" required interface="alert" placeholder="请选择设备类型" cancelText="取消" okText="确定">
+                        <ion-select-option *ngFor="let item of deviceList" [value]="item.deviceId">{{item.deviceName}}</ion-select-option>
+                    </ion-select>
+                </ion-item>
+                <div [hidden]="deviceId.valid || deviceId.untouched" class="alert-danger">设备类型必选</div>
+                <ion-item>
+                    <ion-label required>设备品牌</ion-label>
+                    <ion-select [(ngModel)]="model.tagId" (ionChange)="handleTagChange()" name="tagId" #tagId="ngModel" required interface="alert" placeholder="请选择设备品牌" cancelText="取消" okText="确定">
+                        <ion-select-option *ngFor="let item of brandList" [value]="item.tagId">{{item.tagValue}}</ion-select-option>
+                    </ion-select>
+                </ion-item>
+                <div [hidden]="tagId.valid || tagId.untouched" class="alert-danger">设备品牌必选</div>
+                <div class="bind--button">
+                    <ion-button expand="block" [disabled]="!bindForm.form.valid" (click)="handleBind()">绑定</ion-button>
+                </div>
+            </ion-list>
+        </form>
+    </div>
+    
+
+    <div class="success--bind" *ngIf="isSuccess">
+        <img src="../../../assets/img/success.png">
+        <div style="font-size: 18px; font-weight: bold; padding-top: 10px;">恭喜！授权成功</div>
+        <div class="bind-mess">
+            <div class="success--row">
+                <span class="label">绑定来源：</span>
+                <span class="bind-value">{{model.userName}}</span>
+            </div>
+            <div class="success--row">
+                <span class="label">所属学校：</span>
+                <span class="bind-value">{{model.deptName}}</span>
+            </div>
+            <div class="success--row">
+                <span class="label">所属教室：</span>
+                <span class="bind-value">{{model.classroomName}}</span>
+            </div>
+            <div class="success--row">
+                <span class="label">所属班级：</span>
+                <span class="bind-value">{{model.className}}</span>
+            </div>
+            <div class="success--row">
+                <span class="label">设备类型：</span>
+                <span class="bind-value">{{model.deviceName}}</span>
+            </div>
+            <div class="success--row">
+                <span class="label">设备品牌：</span>
+                <span class="bind-value">{{model.tagName}}</span>
+            </div>
+            <div style="width: 60%; margin: 0 auto; padding-top: 10px; line-height: 36px;">
+                <ion-button expand="block" [routerLink]="[ '/tabs/infomation']">好的</ion-button>
+                <div (click)="changeBind()">变更授权</div>
+            </div>
+        </div>
+    </div>
+</ion-content>

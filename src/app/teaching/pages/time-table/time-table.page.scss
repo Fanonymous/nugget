@@ -1,0 +1,28 @@
+.tabs-top{
+    display: flex;
+    background-color: #fff;
+    .tabs--title-item{
+        padding: 10px 0;
+        flex-grow: 1;
+        text-align: center;
+    }
+    .current-select{
+        color: #3C85EE;
+        border-bottom: 1px solid #3C85EE;
+    }
+}
+.total--sub{
+    padding: 10px;
+}
+.course--content{
+    background-color: #fff;
+    padding: 0 10px;
+    .week-title{
+        display: flex;
+        .week-title--item{
+            flex-grow: 1;
+            text-align: center;
+            padding: 10px 0;
+        }
+    }
+}

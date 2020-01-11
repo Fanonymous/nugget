@@ -79,12 +79,13 @@ export class UpdateInfoPage {
                 this.helper.message('邮箱有误！')
                 return
             }
+            this.userInfo.sex = this.sex + ''
             let obj = {
                 userId : this.userInfo.userId,
                 username : this.userInfo.username,
                 fullName : this.userInfo.fullName,
                 imageUrl : this.userInfo.imageUrl,
-                sex : this.sex + '',
+                sex : this.userInfo.sex,
                 backgroundPicture : '',
                 mobile : this.userInfo.mobile,
                 email : this.userInfo.email,

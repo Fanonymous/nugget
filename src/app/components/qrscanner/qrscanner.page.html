@@ -1,0 +1,49 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button text="二维码" icon="myleft"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [ngClass]="{'scanner': scannerClass}">
+    <div class="scanner--box" *ngIf="!waitLogin">
+        <div class="qr-scanner-area">
+            <p class="lines"></p>
+        </div>
+        <div class="scanner-button-bottom">
+            <ion-button fill="clear" class="qr-scanner-button" (click)="toogleLight()">
+                <ion-icon slot="icon-only" name="flashlight"></ion-icon>
+            </ion-button>
+            <ion-button fill="clear" class="qr-scanner-button" (click)="toggleCamera()">
+                <ion-icon name="reverse-camera" slot="icon-only"></ion-icon>
+            </ion-button>
+        </div>
+    </div>
+    <div class="login-scanner-after" *ngIf="waitLogin">
+        <div class="after--box">
+            <img src="../../../assets/img/login_wait.png" alt="登录中...">
+            <div class="account--mess">
+                <div *ngIf="!isExpired && isSanme == '1'">
+                    <span>即将使用</span>
+                    <span style="color: #333; font-weight: bold; padding: 0 5px;">{{personAccount}}</span>
+                    <span>（学校帐号不允许修改密码）登录</span>
+                </div>
+                <div *ngIf="!isExpired && isSanme == '0'">
+                    <div style="font-size: 14px;">APP帐号不匹配</div>
+                    <div>
+                        <span style="font-size: 14px;">请使用</span>
+                        <span style="color: #333; font-weight: bold; padding: 0 5px;">{{currentDeptName}}</span>
+                        <span style="font-size: 14px;">帐号授权登录</span>
+                    </div>
+                </div>
+                <div *ngIf="isExpired" style="color: #333; font-weight: bold;">授权已过期，请重新扫描登录</div>
+            </div>
+            <div class="block--button">
+                <ion-button expand="block" *ngIf="!isExpired && isSanme == '1'" (click)="confirmLogin()">确认登录</ion-button>
+                <ion-button expand="block" *ngIf="isExpired" (click)="reScanner()">重新扫码</ion-button>
+            </div>
+            <div class="cancel--button" (click)="handleCancel()"><span>取消</span></div>
+        </div>
+    </div>
+</ion-content>
