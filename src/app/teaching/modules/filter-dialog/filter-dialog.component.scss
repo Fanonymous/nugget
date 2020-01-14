@@ -1,0 +1,16 @@
+.class--filter-row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+.filter--operate{
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #eee;
+    line-height: 45px;
+    div{
+        flex-grow: 1;
+        text-align: center;
+    }
+}

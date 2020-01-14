@@ -19,10 +19,28 @@
     padding: 0 10px;
     .week-title{
         display: flex;
+        padding-top: 5px;
         .week-title--item{
             flex-grow: 1;
             text-align: center;
-            padding: 10px 0;
+            padding: 14px 0;
         }
+        .current--day{
+            border-radius: 50%;
+            background-color: #FBA61A;
+            color: #fff;
+        }
+    }
+}
+.total--sub{
+    display: flex;
+    justify-content: space-between;
+}
+.no--data{
+    text-align: center;
+    color: #858E9F;
+    padding-bottom: 20px;
+    img{
+        width: 80px;
     }
 }

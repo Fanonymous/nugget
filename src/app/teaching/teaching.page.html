@@ -21,36 +21,36 @@
     <div class="school-timetable">
         <div class="time--title">
             <div>
-                <span style="font-size: 20px; font-weight: bold;">我的课表</span>
+                <span style="font-size: 20px; font-weight: bold;">{{labelName}}</span>
                 <span style="padding-left: 10px;">{{weekDay}}</span>
             </div>
-            <div>
+            <div [routerLink]="[ '/tabs/teaching/time-table']">
                 <span>更多>></span>
             </div>
         </div>
-        <div class="time--content">
+        <div class="time--content" *ngIf="isHaveMine || isHaveClass || isHaveTeacher">
             <ion-grid fixed>
-                <ion-row *ngFor="let value of currentTimeTable">
+                <ion-row *ngFor="let value of currentTimeTable, let i = index" [ngClass]="{'first-row': isFirst && i == 0}" class="ion-align-items-center" style="border-top: 1px solid #eee;">
                     <ion-col size="3.5">
-                        <div style="text-align: center;">
-                            <div>{{value.order}}</div>
-                            <div>{{value.classTime}}</div>
+                        <div style="text-align: center;font-size: 14px;line-height: 26px;">
+                            <div>{{value.lessionCodeName}}</div>
+                            <div>{{value.startTime.substr(0,5)}}-{{value.endTime.substr(0,5)}}</div>
                         </div>
                     </ion-col>
                     <ion-col size="4.5">
-                        <div style="text-align: center;">{{value.courseName}}</div>
+                        <div style="text-align: center;font-size: 14px;">{{value.subjectName}}</div>
                     </ion-col>
                     <ion-col size="4">
-                        <div style="text-align: center;">{{value.className}}</div>
+                        <div style="text-align: center;font-size: 14px;">{{value.className}}</div>
                     </ion-col>
                 </ion-row>
             </ion-grid>
+            <div class="no--data" *ngIf="currentTimeTable.length == 0">
+                <img src="../../assets/img/unHappy.png">
+                <div>暂无课程信息哦~</div>
+            </div>
         </div>
     </div>
 
-    <div class="bottom--tip">
-        <div class="bottom--line"></div>
-        <div style="padding: 0 10px;">到底了</div>
-        <div class="bottom--line"></div>
-    </div>
+    <app-bottom-line></app-bottom-line>
 </ion-content>

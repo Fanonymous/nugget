@@ -5,46 +5,83 @@
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
-
-<ion-content>
-    <div class="time-table--wrapper">
+<ion-content>       
+    <div class="time-table--wrapper" *ngIf="isHaveMine || isHaveClass || isHaveTeacher">
        <div class="tabs-top">
-           <div class="tabs--title-item" [ngClass]="{'current-select': index == 1}" (click)="index = 1">我的课表</div>
-           <div class="tabs--title-item" [ngClass]="{'current-select': index == 2}" (click)="index = 2">班级课表</div>
-           <div class="tabs--title-item" [ngClass]="{'current-select': index == 3}" (click)="index = 3">教师课表</div>  
+           <div class="tabs--title-item" *ngIf="isHaveMine" [ngClass]="{'current-select': index == 1}" (click)="changeTab(1)">我的课表</div>
+           <div class="tabs--title-item" *ngIf="isHaveClass" [ngClass]="{'current-select': index == 2}" (click)="changeTab(2)">班级课表</div>
+           <div class="tabs--title-item" *ngIf="isHaveTeacher" [ngClass]="{'current-select': index == 3}" (click)="changeTab(3)">教师课表</div>  
        </div>
        <div class="total--sub">
-           <span>共8节课</span>
+           <div>
+               <span>共8节课</span>
+               <span *ngIf="index == 2" style="font-size: 14px;">({{gradeName}}/{{className}})</span>
+               <span *ngIf="index == 3" style="font-size: 14px;">({{subjectName}}/{{teacherName}})</span>
+            </div>
+           <div *ngIf="index != 1" (click)="handleFilter()" style="color: #858E9F;">
+               <span>筛选</span>
+               <span class="iconfont ion-iosguolv"></span>
+           </div>
        </div>
 
        <div class="course--content">
            <div class="week-title">
-               <div class="week-title--item">日</div>
-               <div class="week-title--item">一</div>
-               <div class="week-title--item">二</div>
-               <div class="week-title--item">三</div>
-               <div class="week-title--item">四</div>
-               <div class="week-title--item">五</div>
-               <div class="week-title--item">六</div>
+               <div class="week-title--item" [ngClass]="{'current--day': currentDay == 0}" (click)="changeWeek(0)">
+                   <span *ngIf="currentDay != 0">日</span>
+                   <span *ngIf="currentDay == 0">今</span>
+                </div>
+               <div class="week-title--item" [ngClass]="{'current--day': currentDay == 1}" (click)="changeWeek(1)">
+                    <span *ngIf="currentDay != 1">一</span>
+                    <span *ngIf="currentDay == 1">今</span>
+                </div>
+               <div class="week-title--item" [ngClass]="{'current--day': currentDay == 2}" (click)="changeWeek(2)">
+                    <span *ngIf="currentDay != 2">二</span>
+                    <span *ngIf="currentDay == 2">今</span>
+                </div>
+               <div class="week-title--item" [ngClass]="{'current--day': currentDay == 3}" (click)="changeWeek(3)">
+                    <span *ngIf="currentDay != 3">三</span>
+                    <span *ngIf="currentDay == 3">今</span>
+                </div>
+               <div class="week-title--item" [ngClass]="{'current--day': currentDay == 4}" (click)="changeWeek(4)">
+                    <span *ngIf="currentDay != 4">四</span>
+                    <span *ngIf="currentDay == 4">今</span>
+                </div>
+               <div class="week-title--item" [ngClass]="{'current--day': currentDay == 5}" (click)="changeWeek(5)">
+                    <span *ngIf="currentDay != 5">五</span>
+                    <span *ngIf="currentDay == 5">今</span>
+               </div>
+               <div class="week-title--item" [ngClass]="{'current--day': currentDay == 6}" (click)="changeWeek(6)">
+                    <span *ngIf="currentDay != 6">六</span>
+                    <span *ngIf="currentDay == 6">今</span>
+                </div>
            </div>
            <div class="week-course">
-                <ion-grid fixed>
-                    <ion-row *ngFor="let value of currentTimeTable">
+                <ion-grid fixed *ngIf="currentTimeTable.length != 0">
+                    <ion-row *ngFor="let value of currentTimeTable" class="ion-align-items-center" style="border-top: 1px solid #eee;">
                         <ion-col size="3.5">
-                            <div style="text-align: center;font-size: 14px;">
-                                <div>{{value.order}}</div>
-                                <div>{{value.classTime}}</div>
+                            <div style="text-align: center;font-size: 14px;line-height: 26px;">
+                                <div>{{value.lessionCodeName}}</div>
+                                <div>{{value.startTime.substr(0,5)}}-{{value.endTime.substr(0,5)}}</div>
                             </div>
                         </ion-col>
                         <ion-col size="4.5">
-                            <div style="text-align: center;font-size: 14px;">{{value.courseName}}</div>
+                            <div style="text-align: center;font-size: 14px;">{{value.subjectName}}</div>
                         </ion-col>
                         <ion-col size="4">
                             <div style="text-align: center;font-size: 14px;">{{value.className}}</div>
                         </ion-col>
                     </ion-row>
                 </ion-grid>
+                <div class="no--data" *ngIf="currentTimeTable.length == 0">
+                    <img src="../../../../assets/img/unHappy.png">
+                    <div>暂无课程信息哦~</div>
+                </div>
            </div>
        </div>
     </div>
+    <div class="no--data" *ngIf="!isHaveMine && !isHaveClass && !isHaveTeacher">
+        <img src="../../../../assets/img/unHappy.png">
+        <div>暂无课程信息哦~</div>
+    </div>
+    <app-bottom-line></app-bottom-line>
 </ion-content>

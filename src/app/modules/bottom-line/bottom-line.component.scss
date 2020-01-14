@@ -1,0 +1,9 @@
+.bottom--tip{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .bottom--line{
+        width: 80px;
+        border-bottom: 1px solid #9BA0AD;
+    }
+}

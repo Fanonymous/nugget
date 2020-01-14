@@ -8,11 +8,14 @@ import { TeachingPageRoutingModule } from './teaching-routing.module';
 
 import { TeachingPage } from './teaching.page';
 
+import { BottomLineModule } from '../modules/bottom-line/bottom-line.module'
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    BottomLineModule,
     TeachingPageRoutingModule
   ],
   declarations: [TeachingPage]

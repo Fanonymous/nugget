@@ -33,8 +33,8 @@ import { AppComponent } from './app.component';
 
 
 //开发模式引入控制台
-import VConsole from 'vconsole';
-var vConsole = new VConsole();
+// import VConsole from 'vconsole';
+// var vConsole = new VConsole();
 
 @NgModule({
     declarations: [AppComponent],

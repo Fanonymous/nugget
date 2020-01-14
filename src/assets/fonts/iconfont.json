@@ -69,6 +69,13 @@
       "unicode_decimal": 58945
     },
     {
+      "icon_id": "1596325",
+      "name": "切换",
+      "font_class": "qiehuan",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
       "icon_id": "2116287",
       "name": "手机",
       "font_class": "phone_icon",
@@ -81,6 +88,13 @@
       "font_class": "banjiguanli",
       "unicode": "e611",
       "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "2678606",
+      "name": "过滤",
+      "font_class": "guolv",
+      "unicode": "e64c",
+      "unicode_decimal": 58956
     },
     {
       "icon_id": "4488849",
@@ -102,6 +116,13 @@
       "font_class": "zuo",
       "unicode": "e62f",
       "unicode_decimal": 58927
+    },
+    {
+      "icon_id": "5667970",
+      "name": "扫码",
+      "font_class": "saoma",
+      "unicode": "e631",
+      "unicode_decimal": 58929
     },
     {
       "icon_id": "5809184",

@@ -1,0 +1,36 @@
+<div class="filter--dialog-wrapper">
+    <div>
+        <div *ngIf="index == 2">
+            <div class="class--filter-row">
+                <span>年级</span>
+                <ion-select [(ngModel)]="gradeValue" (ionChange)="handleSelect()" placeholder="请选择年级" interface="alert" cancelText="取消" okText="确定">
+                    <ion-select-option *ngFor="let item of gradeList" [value]="item.gradeId">{{item.gradeName}}</ion-select-option>
+                </ion-select>
+            </div>
+            <div class="class--filter-row">
+                <span>班级</span>
+                <ion-select [(ngModel)]="classValue" (ionChange)="classChange()" placeholder="请选择班级" interface="alert" cancelText="取消" okText="确定">
+                    <ion-select-option *ngFor="let item of classList" [value]="item.classId">{{item.className}}</ion-select-option>
+                </ion-select>
+            </div>
+        </div>
+        <div *ngIf="index == 3">
+            <div class="class--filter-row">
+                <span>科目</span>
+                <ion-select [(ngModel)]="subjectId" (ionChange)="subjectChange()" placeholder="请选择科目" interface="alert" cancelText="取消" okText="确定">
+                    <ion-select-option *ngFor="let item of subjectList" [value]="item.subjectId">{{item.subjectName}}</ion-select-option>
+                </ion-select>
+            </div>
+            <div class="class--filter-row">
+                <span>姓名</span>
+                <ion-select [(ngModel)]="teacherId" (ionChange)="teacherChange()" placeholder="请选择教师" interface="alert" cancelText="取消" okText="确定">
+                    <ion-select-option *ngFor="let item of teacherList" [value]="item.teacherId">{{item.teacherName}}</ion-select-option>
+                </ion-select>
+            </div>
+        </div>
+        <div class="filter--operate">
+            <div style="border-right: 1px solid #eee;" (click)="reset()">重置</div>
+            <div style="color: #007AFF" (click)="confirmFilter()">确定</div>
+        </div>
+    </div>
+</div>

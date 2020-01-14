@@ -102,3 +102,11 @@ ion-label {
         padding-right: 5px;
     }
 }
+.filter-class{
+    padding-top: 42px;
+    background-color: rgba(0, 0, 0, .3);
+    align-items: flex-start;
+    .modal-wrapper{
+        height: 175px;
+    }
+}
