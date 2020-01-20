@@ -13,6 +13,7 @@ export class TimeTablePage implements OnInit {
     public index: Number
     public currentTimeTable: Array<any>
     public currentDay: Number
+    public currentShowLabel: Number
 
     public gradeValue: String
     public gradeName: String
@@ -33,7 +34,7 @@ export class TimeTablePage implements OnInit {
         public modal: ModalController ) {
 
         this.index = 1
-        this.currentDay = new Date().getDay()
+        this.currentDay = this.currentShowLabel = new Date().getDay()
 
         this.currentTimeTable = []
         let menuIds = JSON.parse(Storage.localStorage.get('menuList'))
@@ -84,7 +85,7 @@ export class TimeTablePage implements OnInit {
         this.index = index
         this.currentTimeTable = []
         if (index == 1) {
-            this.getclassTable(this.currentDay)
+            this.getclassTable(this.currentShowLabel)
         }
         if (index == 2) {
             if (!this.gradeValue && !this.classValue) {
@@ -115,7 +116,7 @@ export class TimeTablePage implements OnInit {
 
     getWeekTable() {
         this.http.post('eduManageCourse/getCourse', {
-            weekDay: this.currentDay + '',
+            weekDay: this.currentShowLabel + '',
             gradeId: this.gradeValue,
             classId: this.classValue
         }).subscribe(res => {
@@ -125,7 +126,7 @@ export class TimeTablePage implements OnInit {
 
     getTeacherTable() {
         this.http.post('eduManageCourse/getCourse', {
-            weekDay: this.currentDay + '',
+            weekDay: this.currentShowLabel + '',
             teacherId: this.teacherId
         }).subscribe(res => {
             this.currentTimeTable = res.list
@@ -187,7 +188,7 @@ export class TimeTablePage implements OnInit {
     }
 
     changeWeek(week) {
-        this.currentDay = week
+        this.currentShowLabel = week
         if (this.index == 1) {
             this.getclassTable(week)
         }else if (this.index == 2) {

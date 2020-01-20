@@ -1,5 +1,10 @@
 ion-content{
-    --background: #f8f9fb;
+    --background: #F8F8FA;
+    font-size: 15px !important;
+}
+ion-textarea,ion-input{
+    font-size: 15px !important;
+    --placeholder-font-style: 15px !important;
 }
 ion-toolbar{
     --min-height : 40px;
@@ -17,6 +22,7 @@ ion-title{
     }
     .action-sheet-button-inner{
         justify-content: space-around;
+        font-size: 15px;
     }
     .action-sheet-logout{
         color: #F56C6C;
@@ -24,6 +30,7 @@ ion-title{
 }
 .choise--album{
     .action-sheet-button{
+        font-size: 15px;
         border-bottom: 1px solid #dcdfe6;
     }
     .action-sheet-group-cancel{
@@ -52,6 +59,7 @@ ion-toast{
     justify-content: space-around;
     z-index: 9999;
     span{
+        font-size: 15px;
         color: #fff;
         background-color: rgba(51, 51, 51, .8);
         padding: 8px 20px;

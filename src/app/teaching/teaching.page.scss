@@ -8,10 +8,14 @@
     border-radius: 4px;
     .menu--item{
         text-align: center;
-        padding: 10px 0;
+        padding: 5px 0;
         img{
-            width: 30px;
-            height: 30px;
+            width: 25px;
+            height: 25px;
+        }
+        div{
+            padding-top: 5px;
+            font-size: 12px;
         }
     }
 }
@@ -23,7 +27,7 @@
     .time--title{
         display: flex;
         justify-content: space-between;
-        padding: 10px;
+        padding: 5px 10px;
     }
 }
 
@@ -34,7 +38,8 @@
 .no--data{
     text-align: center;
     color: #858E9F;
-    padding-bottom: 20px;
+    padding: 20px 0;
+    border-top: 1px solid #eee;
     img{
         width: 80px;
     }

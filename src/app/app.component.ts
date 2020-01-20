@@ -113,7 +113,7 @@ export class AppComponent {
         $event.detail.register(100, async () => {
             if (this.router.url == '/tabs/infomation' || this.router.url == '/tabs/teaching' || this.router.url == '/tabs/analysis' || this.router.url == '/tabs/mycenter') {
                 if (!this.exitapp) {
-                    this.helper.message('再按一次退出应用程序', 'b')
+                    this.helper.message('再按一次退出应用程序', 'b', 2000)
                     this.exitapp = true
                     let timer = setTimeout(() => {
                         this.exitapp = false

@@ -125,7 +125,7 @@ export class Helper {
         this.toastController.create(opts).then(toast => toast.present());
     }
     
-    message(message, position = 'm') {
+    message(message, position = 'm', timelong = 600) {
         let div = document.createElement('div')
         div.id = 'messageMy'
         position == 'm' ? div.classList.add('message-wrapper') : div.classList.add('message-wrapper--bottom')
@@ -145,7 +145,7 @@ export class Helper {
             isExist.remove()
             clearTimeout(timer)
             timer = null
-        }, 500);
+        }, timelong);
     }
 
     /**

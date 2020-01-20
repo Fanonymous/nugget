@@ -123,7 +123,8 @@ export class AnalysisPage implements OnInit {
             el: canvas,
             width,
             height,
-            padding:[10,'auto','auto',0]
+            padding:[10,'auto','auto',0],
+            pixelRatio: window.devicePixelRatio
         })
         let Shape : any = F2.Shape, G : any = F2.G, Util : any = F2.Util, Global : any = F2.Global, Vector2 : any = G.Vector2
         Shape.registerShape('interval', 'tick', {

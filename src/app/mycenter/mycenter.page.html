@@ -13,7 +13,7 @@
             </ion-avatar>
             <ion-label class="person--name">
                 <div>
-                    <span style="margin-right: 5px;">{{name}}</span>
+                    <span style="margin-right: 5px; font-size: 16px;">{{name}}</span>
                     <ion-chip class="switch--but" *ngIf="isSwitch" [routerLink]="[ '/switch-identity']">
                         <ion-icon name="qiehuan" color="success"></ion-icon>
                         <ion-label>切换</ion-label>
@@ -24,7 +24,6 @@
                     <span class="icon iconfont ion-iosxiugai" style="font-size: 12px;padding-left:5px;"></span>
                 </div>
             </ion-label>
-            <!-- <ion-icon slot="end" name="myright" [routerLink]="[ '/setting']" [queryParams]="{ type : 1 }"></ion-icon> -->
         </ion-item>
         <ion-item [routerLink]="[ '/setting']" [queryParams]="{ type : 1 }">
             <div class="icon iconfont ion-iosgerenxinxi list-icon"></div>

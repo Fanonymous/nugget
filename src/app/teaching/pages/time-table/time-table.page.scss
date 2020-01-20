@@ -3,32 +3,41 @@
     background-color: #fff;
     .tabs--title-item{
         padding: 10px 0;
+        font-size: 15px;
         flex-grow: 1;
+        width: 0;
         text-align: center;
     }
     .current-select{
         color: #3C85EE;
-        border-bottom: 1px solid #3C85EE;
+        border-bottom: 2px solid #3C85EE;
     }
 }
 .total--sub{
+    font-size: 12px;
     padding: 10px;
+    padding-bottom: 2px;
 }
 .course--content{
     background-color: #fff;
-    padding: 0 10px;
+    padding: 5px;
+    margin: 10px;
+    border-radius: 4px;
     .week-title{
         display: flex;
-        padding-top: 5px;
+        justify-content: space-around;
+        padding: 5px 0;
         .week-title--item{
-            flex-grow: 1;
+            width: 30px;
+            height: 30px;
+            line-height: 35px;
             text-align: center;
-            padding: 14px 0;
         }
         .current--day{
             border-radius: 50%;
             background-color: #FBA61A;
             color: #fff;
+            font-size: 12px;
         }
     }
 }
@@ -39,7 +48,8 @@
 .no--data{
     text-align: center;
     color: #858E9F;
-    padding-bottom: 20px;
+    padding: 20px;
+    border-top: 1px solid #eee;
     img{
         width: 80px;
     }

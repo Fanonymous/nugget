@@ -80,6 +80,7 @@ export class UpdateInfoPage {
                 return
             }
             this.userInfo.sex = this.sex + ''
+            this.userInfo.sign && (this.userInfo.sign = this.userInfo.sign.replace(/\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/g, ''))
             let obj = {
                 userId : this.userInfo.userId,
                 username : this.userInfo.username,

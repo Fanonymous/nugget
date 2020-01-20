@@ -7,10 +7,6 @@ const routes: Routes = [
   {
     path: '',
     component: TeachingPage
-  },
-  {
-    path: 'time-table',
-    loadChildren: () => import('./pages/time-table/time-table.module').then( m => m.TimeTablePageModule)
   }
 ];
 

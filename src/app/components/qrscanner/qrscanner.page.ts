@@ -68,14 +68,14 @@ export class QrscannerPage implements OnDestroy {
         }
     }
 
-    toggleCamera() {
-        this.frontCamera = !this.frontCamera;
-        if (this.frontCamera) {
-            this.scanner.useFrontCamera();
-        } else {
-            this.scanner.useBackCamera();
-        }
-    }
+    // toggleCamera() {
+    //     this.frontCamera = !this.frontCamera;
+    //     if (this.frontCamera) {
+    //         this.scanner.useFrontCamera();
+    //     } else {
+    //         this.scanner.useBackCamera();
+    //     }
+    // }
 
     startScanner() {
         let self = this

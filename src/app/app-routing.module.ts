@@ -40,6 +40,10 @@ const routes: Routes = [
     {
         path: 'qrscanner-bind',
         loadChildren: () => import('./components/qrscanner-bind/qrscanner-bind.module').then( m => m.QrscannerBindPageModule)
+    },
+    {
+        path: 'time-table',
+        loadChildren: () => import('./teaching/pages/time-table/time-table.module').then(m => m.TimeTablePageModule)
     }
 ];
 

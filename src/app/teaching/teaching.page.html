@@ -18,14 +18,14 @@
         </ion-grid>
     </div>
 
-    <div class="school-timetable">
+    <div class="school-timetable" *ngIf="currentTimeTable.length">
         <div class="time--title">
             <div>
-                <span style="font-size: 20px; font-weight: bold;">{{labelName}}</span>
-                <span style="padding-left: 10px;">{{weekDay}}</span>
+                <span style="font-size: 15px; font-weight: bold;">{{labelName}}</span>
+                <span style="font-size: 12px; padding-left: 10px;">{{weekDay}}</span>
             </div>
-            <div [routerLink]="[ '/tabs/teaching/time-table']">
-                <span>更多>></span>
+            <div [routerLink]="[ '/time-table']">
+                <span style="font-size: 12px;">更多>></span>
             </div>
         </div>
         <div class="time--content" *ngIf="isHaveMine || isHaveClass || isHaveTeacher">
@@ -47,7 +47,7 @@
             </ion-grid>
             <div class="no--data" *ngIf="currentTimeTable.length == 0">
                 <img src="../../assets/img/unHappy.png">
-                <div>暂无课程信息哦~</div>
+                <div style="font-size: 12px;">暂无课程信息哦~</div>
             </div>
         </div>
     </div>

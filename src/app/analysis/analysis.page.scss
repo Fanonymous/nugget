@@ -33,18 +33,36 @@
                 font-size: 12px;
             }
         }
+        .chart--right-edu{
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            text-align: right;
+            flex-grow: 1;
+            div{
+                line-height: 30px;
+            }
+            .edu--tip--box{
+                text-align: center;
+                margin-right: 5px;
+            }
+            .edu--tip{
+                font-size: 12px;
+            }
+        }
     }
     .bottom--mess{
         display: flex;
+        margin-top: 10px;
         img{
-            width: 40px;
-            height: 40px;
+            width: 25px;
+            height: 25px;
             border-radius: 50%;
             margin-left: 15px;
         }
         span{
             font-size: 12px;
-            line-height: 40px;
+            line-height: 25px;
             margin-left: 5px;
         }
     }
@@ -66,12 +84,12 @@
         }
     }
     .edu--left{
-        width: 150px;
-        height: 150px;
+        width: 105px;
+        height: 105px;
         position: relative;
         img{
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 100px;
             margin-top: 5px;
             margin-left: 5px;
         }
@@ -82,8 +100,8 @@
             left: 50%;
             font-size: 12px;
             text-align: center;
-            margin-left: -52px;
-            margin-top: -33px;
+            margin-left: -40px;
+            margin-top: -24px;
         }
     }
 }

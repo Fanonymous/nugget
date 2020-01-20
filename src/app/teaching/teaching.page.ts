@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpServiceService } from '../services/http-service.service'
 import { Storage } from '../providers/Storage'
+import { Helper } from '../providers/Helper'
 
 @Component({
   selector: 'app-teaching',
@@ -22,31 +23,32 @@ export class TeachingPage implements OnInit {
 
     constructor(
         public router: Router,
-        public http: HttpServiceService) {
+        public http: HttpServiceService,
+        public helper: Helper) {
         this.menuList = [{
             label: '课程表',
-            url: '../../assets/img/image6.png'
+            url: 'assets/img/kechengbiao.png'
         },{
             label: '纳智传屏',
-            url: '../../assets/img/image7.png'
+            url: '/assets/img/nazhichuanping.png'
         },{
-            label: '设备报修',
-            url: '../../assets/img/image2.png'
-        },{
-            label: '远程巡课',
-            url: '../../assets/img/image9.png'
-        },{
-            label: '视频会议',
-            url: '../../assets/img/image5.png'
-        },{
-            label: '教师云盘',
-            url: '../../assets/img/image1.png'
+            label: '学生档案',
+            url: 'assets/img/xueshengdangan.png'
         },{
             label: '家校互动',
-            url: '../../assets/img/image8.png'
+            url: 'assets/img/jiaoxiaohudong.png'
         },{
-            label: '更多功能',
-            url: '../../assets/img/image16.png'
+            label: '教师云盘',
+            url: 'assets/img/jiaoshiyunpan.png'
+        },{
+            label: '屏幕广播',
+            url: 'assets/img/pingmuguangbo.png'
+        },{
+            label: '德育管理',
+            url: 'assets/img/deyuguanli.png'
+        },{
+            label: '生涯规划',
+            url: 'assets/img/shengyaguihua.png'
         }]
 
         this.weekDay = '星期' + '日一二三四五六'.charAt(new Date().getDay())
@@ -68,7 +70,9 @@ export class TeachingPage implements OnInit {
 
     linkTo(item) {
         if (item.label == '课程表') {
-            this.router.navigate(['/tabs/teaching/time-table'])
+            this.router.navigate(['/time-table'])
+        }else {
+            this.helper.message('功能正在升级中', 'b')
         }
     }
 
