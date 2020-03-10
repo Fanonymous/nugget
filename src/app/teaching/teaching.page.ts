@@ -29,8 +29,8 @@ export class TeachingPage implements OnInit {
             label: '课程表',
             url: 'assets/img/kechengbiao.png'
         },{
-            label: '纳智传屏',
-            url: '/assets/img/nazhichuanping.png'
+            label: '打卡',
+            url: 'assets/img/image7.png'
         },{
             label: '学生档案',
             url: 'assets/img/xueshengdangan.png'
@@ -71,6 +71,8 @@ export class TeachingPage implements OnInit {
     linkTo(item) {
         if (item.label == '课程表') {
             this.router.navigate(['/time-table'])
+        }else if (item.label == '打卡') {
+            this.router.navigate(['/check-in'])
         }else {
             this.helper.message('功能正在升级中', 'b')
         }

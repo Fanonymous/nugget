@@ -9,6 +9,7 @@ import { TimeTablePageRoutingModule } from './time-table-routing.module';
 import { TimeTablePage } from './time-table.page';
 
 import { FilterDialogComponent } from '../../modules/filter-dialog/filter-dialog.component'
+import { FilterDialogModule } from '../../modules/filter-dialog/filter-dialog.module'
 
 import { BottomLineModule } from '../../../modules/bottom-line/bottom-line.module'
 
@@ -18,6 +19,7 @@ import { BottomLineModule } from '../../../modules/bottom-line/bottom-line.modul
     FormsModule,
     IonicModule,
     BottomLineModule,
+    FilterDialogModule,
     TimeTablePageRoutingModule,
   ],
   declarations: [TimeTablePage],

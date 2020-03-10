@@ -1,0 +1,25 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button text="打卡" icon="myleft"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="check-in-wrapper">
+        <div class="header-nav-box">
+            <div class="tabs-top">
+                <div class="tabs--title-item" [ngClass]="{'current-select': index == 1}" (click)="changeTab(1)">
+                    <span>进行中</span>
+                </div>
+                <div class="tabs--title-item" [ngClass]="{'current-select': index == 2}" (click)="changeTab(2)">
+                    <span>已结束</span>
+                </div> 
+            </div>
+            <div class="add-activity-box">
+                <ion-icon name="add"></ion-icon>
+            </div>
+        </div>
+    </div>
+</ion-content>

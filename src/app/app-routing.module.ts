@@ -44,6 +44,10 @@ const routes: Routes = [
     {
         path: 'time-table',
         loadChildren: () => import('./teaching/pages/time-table/time-table.module').then(m => m.TimeTablePageModule)
+    },
+    {
+        path: 'check-in',
+        loadChildren: () => import('./teaching/pages/check-in/check-in.module').then( m => m.CheckInPageModule)
     }
 ];
 
