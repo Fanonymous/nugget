@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from './HttpService';
-import { Observable, of } from 'rxjs';
+import { Observable, of, observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { FileObj } from '../interfaces/file-obj';
 import { environment } from '../../environments/environment';
 import { Utils } from './Utils';
 import { Helper } from './Helper';
+import { File } from '@ionic-native/file/ngx';
+import { FileChooser } from '@ionic-native/file-chooser/ngx';
+import { FilePath } from '@ionic-native/file-path/ngx';
 
 @Injectable({
     providedIn: 'root'
@@ -18,8 +21,68 @@ export class FileService {
         return path.substring(path.lastIndexOf('.') + 1);
     }
 
-    constructor(public http: HttpService, public helper: Helper) {
+    constructor(
+        public http: HttpService, 
+        public helper: Helper,
+        public file: File,
+        public fileChooser: FileChooser,
+        public filePath: FilePath) {
     }
+
+    /**
+     * 打开文件系统  minetype过滤
+     * @param mineType 
+     */
+    openFile(mineType: any): Observable<String> {
+        return Observable.create(observable => {
+            this.fileChooser.open(mineType).then(uri => {
+                this.filePath.resolveNativePath(uri).then((path: string) => {
+                    observable.next(path)
+                })
+            })
+        })
+        
+    }
+
+    /**
+     * 
+     * @param path 将url转换成DataURL
+     */
+    readAsDataURL(path: string): Observable<string> {
+        console.log('转换前：', path)
+        const paths = path.split(/\//);
+        const fileName = paths[paths.length - 1];
+     
+        let url = path.replace(fileName, '');
+     
+        url = url.startsWith('file://') ? url : `file://${url}`;
+     
+        return Observable.create(observable => {
+            this.file.readAsDataURL(url, fileName).then((result: String) => {
+                observable.next(result)
+            })
+        })
+    }
+
+    /**
+     * dataURL转换成blob对象
+     * @param dataURL 
+     */
+    dataURLtoBlob(dataURL: string): Observable<Blob> {
+        const arr = dataURL.split(',');
+        const bstr = atob(arr[1]);
+        let n = bstr.length;
+        const u8arr = new Uint8Array(n);
+     
+        while (n--) {
+          u8arr[n] = bstr.charCodeAt(n);
+        }
+     
+        const type = arr[0].match(/:(.*?);/)[1];
+        return Observable.create(observable => {
+            observable.next(new Blob([u8arr], { type }))
+        })
+    }    
 
     /**
      * 根据ids(文件数组)获取文件信息
@@ -138,17 +201,6 @@ export class FileService {
      * base64转file对象
      */
     base64ToFile(dataurl) {
-        // let arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
-        // bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
-        // while(n--){
-        //     u8arr[n] = bstr.charCodeAt(n);
-        // }
-        // let obj = {
-        //     type : '.' +  mime.split('/')[1].toUpperCase(),
-        //     file : new File([u8arr], filename, {type:mime})
-        // }
-        // return obj
-
         let bytes= window.atob(dataurl.split(',')[1]);        //去掉url的头，并转换为byte  
 
         //处理异常,将ascii码小于0的转换为大于0  

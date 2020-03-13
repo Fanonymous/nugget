@@ -18,7 +18,49 @@
                 </div> 
             </div>
             <div class="add-activity-box">
-                <ion-icon name="add"></ion-icon>
+                <ion-icon name="add" [routerLink]="[ '/check-in/new-punch']"></ion-icon>
+            </div>
+        </div>
+        <div class="content-box">
+            <div class="doing-box">
+                <div class="doing-item" *ngFor="let item of doingData">
+                    <div class="box-top">
+                        <div>{{item.createDate}}</div>
+                        <div>{{item.gradeName}}{{item.className}}</div>
+                    </div>
+                    <div class="box-center">
+                        <div class="box-center-one">
+                            <img src="assets/img/naoling.png">
+                        </div>
+                        <div class="box-center-two">
+                            <div>{{item.themeName}}</div>
+                            <div>已经进行1天</div>
+                        </div>
+                        <div class="box-center-three">
+                            <div class="box-center-three-box">
+                                <div>今日打卡</div>
+                                <div>
+                                    <span>{{item.clockInNum}}/</span>
+                                    <span>{{item.clockInAllNum}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-bottom">
+                        <div>
+                            <span></span>
+                            <span>一键提醒</span>
+                        </div>
+                        <div>
+                            <span></span>
+                            <span>转发</span>
+                        </div>
+                        <div>
+                            <span></span>
+                            <span>查看详情</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -26,6 +26,11 @@ import { Base64 } from '@ionic-native/base64/ngx';
 import { ThemeableBrowser } from '@ionic-native/themeable-browser/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { QRScanner } from '@ionic-native/qr-scanner/ngx';
+import { MediaCapture } from '@ionic-native/media-capture/ngx';
+import { File } from '@ionic-native/file/ngx';
+import { FileChooser } from '@ionic-native/file-chooser/ngx';
+import { FilePath } from '@ionic-native/file-path/ngx';
+import { WebView } from '@ionic-native/ionic-webview/ngx';
 
 //引入路由配置文件和根组件
 import { AppRoutingModule } from './app-routing.module';
@@ -33,8 +38,8 @@ import { AppComponent } from './app.component';
 
 
 //开发模式引入控制台
-// import VConsole from 'vconsole';
-// var vConsole = new VConsole();
+import VConsole from 'vconsole';
+var vConsole = new VConsole();
 
 @NgModule({
     declarations: [AppComponent],
@@ -63,6 +68,11 @@ import { AppComponent } from './app.component';
         ThemeableBrowser,
         AndroidPermissions,
         QRScanner,
+        MediaCapture,
+        File,
+        FileChooser,
+        FilePath,
+        WebView,
     ],
     bootstrap: [AppComponent]
 })

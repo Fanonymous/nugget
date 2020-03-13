@@ -90,6 +90,8 @@ export class AppComponent {
     }
 
     permissions() {
+        this.getWritePermission()
+        this.getFilePermission()
         this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.CAMERA).then(
             result => {
                 if (!result.hasPermission) {
@@ -105,6 +107,28 @@ export class AppComponent {
             }
         }, err => {
             this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.GET_ACCOUNTS)
+        })
+    }
+
+    //读写权限
+    getWritePermission() {
+        this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.WRITE_EXTERNAL_STORAGE).then(write => {
+            if (!write.hasPermission) {
+                this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.WRITE_EXTERNAL_STORAGE)
+            }
+        }, err => {
+            this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.WRITE_EXTERNAL_STORAGE)
+        })
+    }
+
+    //文件系统权限
+    getFilePermission() {
+        this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.MOUNT_UNMOUNT_FILESYSTEMS).then(write => {
+            if (!write.hasPermission) {
+                this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.MOUNT_UNMOUNT_FILESYSTEMS)
+            }
+        }, err => {
+            this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.MOUNT_UNMOUNT_FILESYSTEMS)
         })
     }
 

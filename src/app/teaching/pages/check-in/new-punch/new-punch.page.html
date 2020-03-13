@@ -1,0 +1,82 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button text="创建打卡" icon="myleft"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="new-punch-wrapper">
+        <form #punchForm="ngForm">
+            <div class="form-row">
+                <ion-input type="text" [(ngModel)]="punchModel.themeName" name="themeName" required #themeNameM="ngModel" placeholder="标题(必填)" maxlength="16"></ion-input>
+                <div class="input-tip">0/16</div>
+                <div *ngIf="themeNameM.invalid && (themeNameM.dirty || themeNameM.touched)" class="alert-danger">
+                    <div *ngIf="themeNameM.errors.required">标题必填</div>
+                    <div *ngIf="themeNameM.errors.maxlength">标题最多16字</div>
+                </div>
+            </div>
+            <div class="form-row">
+                <ion-textarea rows="6" [(ngModel)]="punchModel.detail" name="detail" required #detailM="ngModel" placeholder="打卡详情(必填)" maxlength="500"></ion-textarea>
+                <div class="input-tip">0/500</div>
+                <div *ngIf="detailM.invalid && (detailM.dirty || detailM.touched)" class="alert-danger">
+                    <div *ngIf="detailM.errors.required">打卡详情必填</div>
+                    <div *ngIf="detailM.errors.maxlength">打卡详情最多500字</div>
+                </div>
+            </div>
+            <div class="media-content-box">
+                <div *ngIf="audioUrl" class="audio-content-box">
+                    <audio [src]="audioUrl" controls></audio>
+                </div>
+                <div *ngIf="imgages.length" class="image-content-box">
+                    <ion-grid fixed>
+                        <ion-row>
+                            <ion-col size="4" *ngFor="let item of imgages">
+                                <ion-img [src]="item"></ion-img>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </div>
+                <div class="video-content-box" *ngIf="videUrl">
+                    <video width="105" controls height="75" [src]="videUrl"></video>
+                </div>
+            </div>
+            <div class="upload-file">
+                <div class="upload-file-operate">
+                    <div *ngIf="imgages.length < 9" class="upload-file-option" (click)="addPicture()">
+                        <img src="assets/img/image5.png">
+                        <div>添加照片</div>
+                    </div>
+                    <div class="upload-file-option" *ngIf="!videUrl" (click)="addVideo()">
+                        <img src="assets/img/image5.png">
+                        <div>添加视频</div>
+                    </div>
+                    <div class="upload-file-option" *ngIf="!audioUrl" (click)="addAudio()">
+                        <img src="assets/img/image5.png">
+                        <div>添加语音</div>
+                    </div>
+                </div>
+                <div class="file-size-tip">温馨提示：上传视频需小于100M</div>
+            </div>
+            <div class="punch-setting">打卡设置</div>
+            <ion-item>
+                <ion-label required>所属班级</ion-label>
+                <ion-select mode="ios" [(ngModel)]="punchModel.classId" (ionChange)="handleSelect()" name="gradeClass" #classId="ngModel" required placeholder="请选择班级" cancelText="取消" okText="确定" mode="ios">
+                    <ion-select-option *ngFor="let item of classList" [value]="item.classId">{{item.gradeName + item.className}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <div *ngIf="classId.invalid && (classId.dirty || classId.touched)" class="alert-danger">
+                <div *ngIf="classId.errors.required">班级必选</div>
+            </div>
+            <ion-item>
+                <ion-label>打卡截至日期</ion-label>
+                <ion-datetime mode="ios" [(ngModel)]="punchModel.stopDate" name="stopDate" picker-format="YYYY MM DD" displayFormat="YYYY-MM-DD"  cancelText="取消" doneText=确定 placeholder="请选择"></ion-datetime>
+                
+            </ion-item>
+            <div style="padding: 20px 0;">
+                <ion-button expand="block" fill="clear" shape="round" (click)="handleCreat()" [disabled]="!punchForm.form.valid">创建打卡</ion-button>
+            </div>
+        </form>
+    </div>
+</ion-content>

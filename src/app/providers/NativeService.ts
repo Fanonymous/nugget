@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, observable } from 'rxjs';
 import { Logger } from './Logger';
 import { Helper } from './Helper';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
@@ -12,6 +12,10 @@ import { PhotoLibrary } from '@ionic-native/photo-library/ngx';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { Network } from '@ionic-native/network/ngx';
 import { AppMinimize } from '@ionic-native/app-minimize/ngx';
+import { MediaCapture, MediaFile, CaptureError, CaptureAudioOptions, CaptureVideoOptions } from '@ionic-native/media-capture/ngx';
+import { Platform } from '@ionic/angular';
+
+
 
 declare let ImagePicker;
 
@@ -33,6 +37,8 @@ export class NativeService {
                 private iab: InAppBrowser,
                 private network: Network,
                 public helper: Helper,
+                public mediaCapture: MediaCapture,
+                private platform: Platform,
                ) {
     }
 
@@ -181,5 +187,36 @@ export class NativeService {
     share(message: string = null, file: string | string[] = null) {
         this.helper.assertIsMobile();
         this.socialSharing.share(message, null, file);
+    }
+
+    getVideoMedia(options: CaptureVideoOptions = {}): Observable<String> {
+        const opt: CaptureVideoOptions = {
+            limit: 1,
+            duration: 120,
+            ...options
+        }
+        return Observable.create(observable => {
+            this.mediaCapture.captureVideo(opt).then((mediaFiles: MediaFile[]) => {
+                observable.next(mediaFiles)
+            }).catch(err => {
+                observable.next(err)
+            })
+        })
+    }
+
+
+    getAudioMedia(options: CaptureAudioOptions = {}): Observable<String> {
+        const opt: CaptureAudioOptions = {
+            limit: 1,
+            duration: 180,
+            ...options
+        }
+        return Observable.create(observable => {
+            this.mediaCapture.captureAudio(opt).then((mediaFiles: MediaFile[]) => {
+                observable.next(mediaFiles[0])
+            }).catch(err => {
+                observable.next(err)
+            })
+        })
     }
 }

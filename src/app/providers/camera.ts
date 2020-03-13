@@ -78,25 +78,27 @@ export class camera {
     getMultiplePicture(options: CameraOptions | any = {}): Observable<any> {
         const that = this;
         const ops = {
-            maximumImagesCount: 6,
-            width: 1024, // 缩放图像的宽度（像素）
-            height: 1024, // 缩放图像的高度（像素）
-            quality: 100, ...options
+            destinationType: options.destinationType || 0,
+            maximumImagesCount: options.maximumImagesCount || 1,
+            width: options.width || 1024, // 缩放图像的宽度（像素）
+            height: options.height || 1024, // 缩放图像的高度（像素）
+            quality: options.quality || 100,
+             ...options
         };
         return Observable.create(observer => {
             this.ImagePicker.getPictures(ops).then(files => {
                 if (options.destinationType && options.destinationType === 1) { // 0:base64字符串,1:图片url
-                observer.next(files);
-                } else {
-                const imgBase64s = []; // base64字符串数组
-                for (const fileUrl of files) {
-                    that.convertImgToBase64(fileUrl).subscribe(base64 => {
-                        imgBase64s.push(base64);
-                        if (imgBase64s.length === files.length) {
-                            observer.next(imgBase64s);
-                        }
-                    });
-                }
+                    observer.next(files);
+                }else {
+                    const imgBase64s = []; // base64字符串数组
+                    for (const fileUrl of files) {
+                        that.convertImgToBase64(fileUrl).subscribe(base64 => {
+                            imgBase64s.push(base64);
+                            if (imgBase64s.length === files.length) {
+                                observer.next(imgBase64s);
+                            }
+                        });
+                    }
                 }
             }).catch(err => {
                 observer.error(false);

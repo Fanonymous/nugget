@@ -20,7 +20,60 @@
         background-color: #fff;
         width: 40px;
         font-size: 26px; 
-        line-height: 42px;
         text-align: center;
+        ion-icon{
+            padding: 8px 0;
+        }
+    }
+}
+.doing-item{
+    background-color: #fff;
+    box-shadow:0px 7px 12px 0px rgba(0, 0, 0, 0.04);
+    border-radius:8px;
+    margin-bottom: 30px;
+}
+.box-top,.box-center,.box-bottom{
+    display: flex;
+}
+.box-top{
+    font-size: 12px;
+    color: #999999;
+    justify-content: space-between;
+}
+.box-center{
+    .box-center-one{
+        width: 96px;
+        height: 96px;
+    }
+    .box-center-two{
+        flex-grow: 1;
+        div:first-child{
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            line-height: 36px;
+        }
+        div:last-child{
+            color: #999999;
+            font-size: 14px;
+        }
+    }
+    .box-center-three{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        .box-center-three-box{
+            display: flex;
+            div:first-child{
+                font-size: 14px;
+                color: #999999;
+            }
+            div:last-child{
+                color: #F8754F;
+                span:first-child{
+                    font-size: 18px;
+                }
+            }
+        }
     }
 }
