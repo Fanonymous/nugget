@@ -44,3 +44,50 @@
         width: 80px;
     }
 }
+
+.punch-recent-list{
+    background-color: #fff;
+    padding: 10px;
+    .punch-recent-title{
+        display: flex;
+        justify-content: space-between;
+        .punch-recent-title-left{
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .punch-recent-title-right{
+            color: #999;
+        }
+    }
+    .punch-recent-item{
+        box-shadow:0px 7px 12px 0px rgba(0, 0, 0, 0.04);
+        padding: 5px 0;
+        display: flex;
+        .punch-recent-item-left{
+            flex-grow: 1;
+            display: flex;
+            .punch-recent-item-left-img{
+                height: 48px;
+                img{
+                    width: 48px;
+                    height: 48px;
+                }
+            }
+            .punch-recent-item-left-title{
+                font-size: 14px;
+                font-weight: bold;
+                line-height: 48px;
+            }
+        }
+        .punch-recent-item-right{
+            line-height: 48px;
+            width: 100px;
+            flex-basis: auto;
+            .punch-recent-item-right-today{
+                color: #999;
+                font-size: 12px;
+                margin-right: 5px;
+            }
+        }
+    }
+}

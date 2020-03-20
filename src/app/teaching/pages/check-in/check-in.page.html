@@ -7,18 +7,26 @@
 </ion-header>
 
 <ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="refreshPersonMess($event)">
+        <ion-refresher-content
+            pullingIcon="arrow-dropdown"
+            pullingText="释放立即刷新"
+            refreshingSpinner="circles"
+            refreshingText="正在刷新">
+        </ion-refresher-content>
+    </ion-refresher>
     <div class="check-in-wrapper">
         <div class="header-nav-box">
             <div class="tabs-top">
-                <div class="tabs--title-item" [ngClass]="{'current-select': index == 1}" (click)="changeTab(1)">
+                <div class="tabs--title-item" [ngClass]="{'current-select': index == 0}" (click)="changeTab(0)">
                     <span>进行中</span>
                 </div>
-                <div class="tabs--title-item" [ngClass]="{'current-select': index == 2}" (click)="changeTab(2)">
+                <div class="tabs--title-item" [ngClass]="{'current-select': index == 1}" (click)="changeTab(1)">
                     <span>已结束</span>
                 </div> 
             </div>
             <div class="add-activity-box">
-                <ion-icon name="add" [routerLink]="[ '/check-in/new-punch']"></ion-icon>
+                <div [routerLink]="[ '/check-in/new-punch']">+</div>
             </div>
         </div>
         <div class="content-box">
@@ -34,29 +42,32 @@
                         </div>
                         <div class="box-center-two">
                             <div>{{item.themeName}}</div>
-                            <div>已经进行1天</div>
+                            <div>已经进行{{item.stateNum}}天</div>
                         </div>
                         <div class="box-center-three">
-                            <div class="box-center-three-box">
+                            <div *ngIf="index == 0" class="box-center-three-box">
                                 <div>今日打卡</div>
                                 <div>
-                                    <span>{{item.clockInNum}}/</span>
-                                    <span>{{item.clockInAllNum}}</span>
+                                    <span>{{item.clockInNum}}</span>
+                                    <span>/{{item.clockInAllNum}}</span>
                                 </div>
+                            </div>
+                            <div *ngIf="index == 1" class="end-activity">
+                                <span>已结束</span>
                             </div>
                         </div>
                     </div>
                     <div class="box-bottom">
-                        <div>
-                            <span></span>
+                        <div tappable (click)="handleRemind(item.infoId, item.themeName, item.detailInfo)" class="box-bottom-one" *ngIf="index == 0">
+                            <span class="iconfont ion-ios999999-copy"></span>
                             <span>一键提醒</span>
                         </div>
-                        <div>
-                            <span></span>
+                        <!-- <div class="box-bottom-two" *ngIf="index == 0">
+                            <span class="iconfont ion-ios999999"></span>
                             <span>转发</span>
-                        </div>
-                        <div>
-                            <span></span>
+                        </div> -->
+                        <div class="box-bottom-three" [routerLink]="[ '/check-in/view-detail']" [queryParams]="{ id : item.infoId, exerciseState: this.index }">
+                            <span class="iconfont ion-iosliebiao"></span>
                             <span>查看详情</span>
                         </div>
                     </div>
@@ -64,4 +75,17 @@
             </div>
         </div>
     </div>
+    <div class="no-data-wrapper" *ngIf="!doingData.length">
+        <div>
+            <img src="assets/img/no-data.png">
+            <div class="no-data-tip">
+                <span>暂无打卡信息列表，点击</span>
+                <span [routerLink]="[ '/check-in/new-punch']">立即创建</span>
+            </div>
+        </div>
+    </div>
+    <!-- <app-bottom-line></app-bottom-line> -->
+    <ion-infinite-scroll threshold="50px" (ionInfinite)="loadData($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="数据加载中..."> </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>

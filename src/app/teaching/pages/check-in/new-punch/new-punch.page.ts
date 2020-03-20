@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActionSheetController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 import { camera } from '../../../../providers/camera'
 import { HttpServiceService } from '../../../../services/http-service.service'
@@ -29,6 +30,7 @@ export class NewPunchPage implements OnInit {
     public audioUrl: any;
     public audioFullpath: any;
     constructor(
+        public router: Router,
         public http: HttpServiceService,
         public https: HttpNoreturnService,
         public actionSheetController: ActionSheetController,
@@ -181,16 +183,6 @@ export class NewPunchPage implements OnInit {
             ]
         })
         await actionSheet.present()
-    }
-
-    batchUpload(imgs) {
-        if (imgs.length) {
-            imgs.forEach(item => {
-                this.getUploadUrl(item).subscribe(url => {
-
-                })
-            });
-        }
     }
 
     getUploadUrl(img): Observable<String> {
@@ -370,9 +362,8 @@ export class NewPunchPage implements OnInit {
             audioAddress: this.punchModel.audio,
         }).subscribe(res => {
             if (res.code == 0) {
-                
+                this.router.navigate(['/check-in'])
             }
-            console.log('创建成功：', res)
         })
     }
 
@@ -386,6 +377,20 @@ export class NewPunchPage implements OnInit {
             arr.push(this.httpClient.request('POST',`${environment.appServerUrl}sys/oss/picUpload`, options))
         });
         return arr
+    }
+
+    deleteImage(i) {
+        this.imgages.splice(i, 1)
+    }
+
+    deleteVideo() {
+        this.videUrl = ''
+        this.videoFullpath = ''
+    }
+
+    deleteAudio() {
+        this.audioUrl = ''
+        this.audioFullpath = ''
     }
 
     ngOnInit() {

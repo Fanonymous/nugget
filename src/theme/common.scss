@@ -107,3 +107,23 @@ ion-label {
         height: 175px;
     }
 }
+
+.turn-input-class{
+    padding-top: 165px;
+    background-color: rgba(0, 0, 0, .3);
+    align-items: flex-start;
+    .modal-wrapper{
+        width: 80%;
+        height: 210px;
+    }
+}
+
+.keyboard-comment{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-color: rgba(0, 0, 0, .3);
+    .modal-wrapper{
+        height: 365px;
+    }
+}

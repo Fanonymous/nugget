@@ -40,7 +40,8 @@ export class LoginPage implements OnInit {
                 appType : 5,
                 username : this.username,
                 password : CryptoJS.SHA256(this.password).toString(CryptoJS.enc.Hex),
-                platformName : 'app'
+                platformName : 'app',
+                registrationId: Storage.localStorage.get('registrationId')
             }).subscribe(res => {
                 if (res.code == 0) {
                     Storage.localStorage.set('token', res.token)

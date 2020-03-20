@@ -49,7 +49,6 @@ export class FileService {
      * @param path 将url转换成DataURL
      */
     readAsDataURL(path: string): Observable<string> {
-        console.log('转换前：', path)
         const paths = path.split(/\//);
         const fileName = paths[paths.length - 1];
      

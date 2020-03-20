@@ -52,5 +52,34 @@
         </div>
     </div>
 
+
+    <div class="punch-recent-list">
+        <div class="punch-recent-title">
+            <div class="punch-recent-title-left">主题打卡</div>
+            <div class="punch-recent-title-right" tappable (click)="morePunch()">
+                <span>更多</span>
+                <span class="iconfont ion-iosyou"></span>
+            </div>
+        </div>
+
+        <div class="punch-recent-list-box">
+            <div class="punch-recent-item" *ngFor="let item of doingData" tappable (click)="handleToPunch(item.infoId)">
+                <div class="punch-recent-item-left">
+                    <div class="punch-recent-item-left-img">
+                        <img src="assets/img/naoling.png">
+                    </div>
+                    <div class="punch-recent-item-left-title">{{item.themeName}}</div>
+                </div>
+                <div class="punch-recent-item-right">
+                    <span class="punch-recent-item-right-today">今日打卡</span>
+                    <span style="color: #F8754F;">
+                        <span style="font-size: 18px;">{{item.clockInNum}}</span>
+                        <span>/{{item.clockInAllNum}}</span>
+                    </span>   
+                </div>
+            </div>
+        </div>
+    </div>
+
     <app-bottom-line></app-bottom-line>
 </ion-content>

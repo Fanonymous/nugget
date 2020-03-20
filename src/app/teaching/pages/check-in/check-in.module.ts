@@ -8,11 +8,14 @@ import { CheckInPageRoutingModule } from './check-in-routing.module';
 
 import { CheckInPage } from './check-in.page';
 
+import { BottomLineModule } from '../../../modules/bottom-line/bottom-line.module'
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    BottomLineModule,
     CheckInPageRoutingModule
   ],
   declarations: [CheckInPage]

@@ -1,0 +1,17 @@
+.comment-keyboard-box{
+    display: flex;
+    padding: 0 10px;
+}
+.comment-content-text{
+    flex-grow: 1;
+    ion-textarea{
+        border: 1px solid #eee;
+        border-radius: 4px;
+    }
+}
+.send-comment-button{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-left: 10px;
+}

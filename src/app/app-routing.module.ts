@@ -48,7 +48,11 @@ const routes: Routes = [
     {
         path: 'check-in',
         loadChildren: () => import('./teaching/pages/check-in/check-in.module').then( m => m.CheckInPageModule)
-    }
+    },
+    {
+        path: 'student-punch',
+        loadChildren: () => import('./teaching/student/student-punch/student-punch.module').then( m => m.StudentPunchPageModule)
+    },
 ];
 
 @NgModule({

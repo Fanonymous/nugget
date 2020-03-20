@@ -1,0 +1,137 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button text="打卡详情" icon="myleft"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="student-punch-wrapper">
+        <div class="punch-title-box">
+            <div class="punch-title-left">
+                <div>{{detailObj.themeName}}</div>
+                <div>{{detailObj.createDate}}——{{detailObj.endDate}}</div>
+            </div>
+            <div class="punch-title-right">
+                <span>
+                    <span class="iconfont ion-ios999999"></span>
+                    <span>转发</span>
+                </span>
+            </div>
+        </div>
+        <div class="punch-detail-box">
+            <div class="abb-detail">
+                <div [hidden]="isExpand" class="title-adb">{{detailObj.detailInfo}}</div>
+                <div [hidden]="!isExpand" class="all-punch-content">
+                    <div>{{detailObj.detailInfo}}</div>
+                    <div class="media-content-box">
+                        <div [hidden]="!detailObj.audioAddress" class="audio-content-box">
+                            <audio controls [src]="baseApi + detailObj.audioAddress"></audio>
+                        </div>
+                        <div class="image-content-box">
+                            <ion-grid fixed>
+                                <ion-row>
+                                    <ion-col size="4" *ngFor="let item of images">
+                                        <div class="image-item">
+                                            <ion-img [src]="baseApi + item"></ion-img>
+                                        </div>
+                                    </ion-col>
+                                    <ion-col [hidden]="!detailObj.videoAddress" size="4">
+                                        <div class="video-content-box">
+                                            <video controls [src]="baseApi + detailObj.videoAddress"></video>
+                                        </div>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </div>
+                    </div>
+                    <div class="open-detail">
+                        <span tappable (click)="handleExpand()">
+                            <span>收起</span>
+                            <span class="iconfont ion-iosxiangshang" style="font-size: 14px;"></span>
+                        </span>
+                    </div>
+                </div>
+                <div *ngIf="!isExpand" class="open-detail">
+                    <span tappable (click)="handleExpand()">
+                        <span>展开</span>
+                        <span class="iconfont ion-iosxiangxia"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="punch-list-box">
+            <div class="list-title">
+                <span>打卡列表（今日）</span>
+                <span class="iconfont ion-ioscs-rl-1"></span>
+            </div>
+            <div class="tabs-top">
+                <div class="tabs--title-item" [ngClass]="{'current-select': index == 0}" (click)="changeTab(0)">
+                    <span>我的打卡</span>
+                </div>
+                <div class="tabs--title-item" [ngClass]="{'current-select': index == 1}" (click)="changeTab(1)">
+                    <span>班级打卡</span>
+                </div> 
+            </div>
+
+            <div class="punch-list-wrapper">
+                <div class="punch-list-item" *ngFor="let item of clockList">
+                    <div class="person-mess">
+                        <div class="person-avatar-left">
+                            <div class="person-avatar">
+                                <img [src]="item.icon? baseApi + item.icon : 'assets/img/avatar.png'">
+                            </div>
+                            <div class="person-name">
+                                <div>{{item.stuName}}</div>
+                                <div>{{item.createDate}}</div>
+                            </div>
+                        </div>
+                        <div *ngIf="index == 0" [routerLink]="[ '/student-punch/edit-punch']" [queryParams]="{ id : infoId, isEdit: 1 }">编辑</div>
+                    </div>
+                    <div class="punch-mess-title">{{item.detailInfo}}</div>
+                    <div class="media-content-box">
+                        <div [hidden]="!item.audioAddress" class="audio-content-box">
+                            <audio controls [src]="baseApi + item.audioAddress"></audio>
+                        </div>
+                        <div class="image-content-box">
+                            <ion-grid fixed>
+                                <ion-row>
+                                    <ion-col size="4" *ngFor="let img of item.pictureAddressList">
+                                        <div class="image-item">
+                                            <ion-img [src]="baseApi + img"></ion-img>
+                                        </div>
+                                    </ion-col>
+                                    <ion-col [hidden]="!item.videoAddress" size="4">
+                                        <div class="video-content-box">
+                                            <video controls [src]="baseApi + item.videoAddress"></video>
+                                        </div>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </div>
+                    </div>
+                    <div *ngIf="index == 1" class="flower-delivery">
+                        <span tappable class="flower-delivery-one" (click)="handleFlower(item.detailsId)">
+                            <span *ngIf="item.isLike == 0" class="iconfont ion-ioshua"></span>
+                            <span *ngIf="item.isLike == 1" class="iconfont ion-ioshua1" style="color: #F8754F;"></span>
+                            <span>送花({{item.likeNum}})</span>
+                        </span>
+                        <span tappable [routerLink]="[ '/student-punch/submit-comment']" [queryParams]="{ id : item.detailsId }">
+                            <span class="iconfont ion-iospinglun"></span>
+                            <span>评论(0)</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div *ngIf="!clockList.length" class="no-data-box">当日暂无打卡记录</div>
+            <div class="punch-button" *ngIf="detailObj.alreadyClock == 0">
+                <div tappable [routerLink]="[ '/student-punch/add-punch']" [queryParams]="{ id : infoId }">
+                    <span>打卡</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>

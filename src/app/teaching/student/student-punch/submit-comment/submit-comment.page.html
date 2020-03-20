@@ -1,0 +1,80 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button text="打卡详情" icon="myleft"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="comment-wrapper">
+        <div class="person-mess">
+            <div class="person-avatar">
+                <img [src]="detailObj.icon? baseApi + detailObj.icon : 'assets/img/avatar.png'">
+            </div>
+            <div>
+                <div>{{detailObj.stuName}}</div>
+                <div>{{detailObj.createDate}}</div>
+            </div>
+        </div>
+        <div class="punch-detail-box">
+            <div class="all-punch-content">
+                <div style="padding-left: 20px;">{{detailObj.detailInfo}}</div>
+                <div class="media-content-box">
+                    <div [hidden]="!detailObj.audioAddress" class="audio-content-box">
+                        <audio controls [src]="baseApi + detailObj.audioAddress"></audio>
+                    </div>
+                    <div class="image-content-box">
+                        <ion-grid fixed>
+                            <ion-row>
+                                <ion-col size="4" *ngFor="let item of detailObj.pictureAddressList">
+                                    <div class="image-item">
+                                        <ion-img [src]="baseApi + item"></ion-img>
+                                    </div>
+                                </ion-col>
+                                <ion-col [hidden]="!detailObj.videoAddress" size="4">
+                                    <div class="video-content-box">
+                                        <video width="90" height="85" controls [src]="baseApi + detailObj.videoAddress"></video>
+                                    </div>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tabs-wrapper">
+            <div class="tabs-left">
+                <span [ngClass]="{'current-select': index == 0}" (click)="changeTab(0)">评论({{detailObj.evaluationNum}})</span>
+                <span [ngClass]="{'current-select': index == 1}" (click)="changeTab(1)">送花({{detailObj.likeNum}})</span>
+            </div>
+            <div class="tabs-right">
+                <span tappable (click)="writeComment()">
+                    <span>写评语</span>
+                    <span class="iconfont ion-iosxiugai"></span>
+                </span>
+            </div>
+        </div>
+        <div [hidden]="index == 1" class="comment-content-wrapper">
+            <div class="comment-item" *ngFor="let item of detailObj.evaluationList">
+                <div class="item-left">
+                    <img [src]="item.icon? baseApi + item.icon : 'assets/img/avatar.png'">
+                </div>
+                <div class="item-right">
+                    <div class="item-right-top">{{item.stuName}}</div>
+                    <div class="item-right-center">{{item.createDate}}</div>
+                    <div class="item-right-bottom">{{item.evaluation}}</div>
+                </div>
+            </div>
+        </div>
+
+        <div [hidden]="index == 0" class="flower-content-wrapper">
+            <div class="flower-item" *ngFor="let value of detailObj.likeList">
+                <div class="flower-item-left">
+                    <img [src]="value.icon? baseApi + value.icon : 'assets/img/avatar.png'">
+                </div>
+                <div class="flower-item-right">{{value.stuName}}</div>
+            </div>
+        </div>
+    </div>
+</ion-content>

@@ -11,6 +11,14 @@ const routes: Routes = [
   {
     path: 'new-punch',
     loadChildren: () => import('./new-punch/new-punch.module').then( m => m.NewPunchPageModule)
+  },
+  {
+    path: 'view-detail',
+    loadChildren: () => import('./view-detail/view-detail.module').then( m => m.ViewDetailPageModule)
+  },
+  {
+    path: 'edit-punch',
+    loadChildren: () => import('./edit-punch/edit-punch.module').then( m => m.EditPunchPageModule)
   }
 ];
 

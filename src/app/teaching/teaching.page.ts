@@ -21,6 +21,8 @@ export class TeachingPage implements OnInit {
 
     public labelName: String = '我的课表'
 
+    public doingData: any;
+
     constructor(
         public router: Router,
         public http: HttpServiceService,
@@ -61,20 +63,53 @@ export class TeachingPage implements OnInit {
             menuIds[0].menuIds.indexOf('10010') > -1 && (this.isHaveClass = true)
             menuIds[0].menuIds.indexOf('10013') > -1 && (this.isHaveTeacher = true)
         }
+        this.doingData = []
     }
 
     ngOnInit() {
         this.isHaveMine && (this.getmineTable())
         !this.isHaveMine && this.isHaveClass && (this.getclassTable())
+        this.getDoneData()
     }
 
     linkTo(item) {
         if (item.label == '课程表') {
             this.router.navigate(['/time-table'])
         }else if (item.label == '打卡') {
-            this.router.navigate(['/check-in'])
+            if (Storage.localStorage.get('userType') == 3) {
+                this.router.navigate(['/student-punch'])
+            }else {
+                this.router.navigate(['/check-in'])
+            }
+            
         }else {
             this.helper.message('功能正在升级中', 'b')
+        }
+    }
+
+    morePunch() {
+        if (Storage.localStorage.get('userType') == 3) {
+            this.router.navigate(['/student-punch'])
+        }else {
+            this.router.navigate(['/check-in'])
+        }
+    }
+
+    handleToPunch(id) {
+        if (Storage.localStorage.get('userType') == 3) {
+            this.router.navigate(['/student-punch/punch-detail'], {
+                queryParams: {
+                    id: id,
+                    exerciseState: 0
+                }
+            })
+        }else {
+            this.router.navigate(['/check-in/view-detail'], {
+                queryParams: {
+                    id: id,
+                    exerciseState: 0
+                }
+            })
         }
     }
 
@@ -137,5 +172,17 @@ export class TeachingPage implements OnInit {
                 break
             }
         }
+    }
+
+    getDoneData() {
+        this.http.post('clockIn/queryInfo', {
+            page: 1,
+            limit: 3,
+            exerciseState: 0
+        }).subscribe(res => {
+            if (res.code == 0) {
+                this.doingData = res.page.list
+            }
+        })
     }
 }

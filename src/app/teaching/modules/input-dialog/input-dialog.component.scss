@@ -1,0 +1,17 @@
+.input-dialog-wrapper{
+    padding: 10px;
+    ion-textarea{
+        border-radius: 4px;
+        border: 1px solid #eee;
+    }
+}
+.dialog-title{
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 0;
+}
+.operate-button{
+    margin-top: 10px;
+    text-align: right;
+}

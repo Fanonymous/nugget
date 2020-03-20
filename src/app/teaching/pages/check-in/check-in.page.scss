@@ -17,12 +17,16 @@
         }
     }
     .add-activity-box{
+        padding: 6px;
         background-color: #fff;
-        width: 40px;
-        font-size: 26px; 
-        text-align: center;
-        ion-icon{
-            padding: 8px 0;
+        div{
+            padding: 2.5px 7.5px;
+            border-radius: 50%;
+            color: #fff;
+            text-align: center;
+            font-size: 20px;
+            font-weight: 600;
+            background:linear-gradient(135deg,rgba(78,118,252,1) 0%,rgba(130,159,251,1) 100%);
         }
     }
 }
@@ -30,7 +34,8 @@
     background-color: #fff;
     box-shadow:0px 7px 12px 0px rgba(0, 0, 0, 0.04);
     border-radius:8px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
+    padding: 10px;
 }
 .box-top,.box-center,.box-bottom{
     display: flex;
@@ -41,21 +46,24 @@
     justify-content: space-between;
 }
 .box-center{
+    border-bottom: 1px solid #eee;
     .box-center-one{
-        width: 96px;
-        height: 96px;
+        width: 48px;
+        height: 48px;
     }
     .box-center-two{
         flex-grow: 1;
+        flex-basis: 0;
         div:first-child{
-            font-size: 20px;
+            font-size: 16px;
             font-weight: bold;
             color: #333;
-            line-height: 36px;
+            padding: 5px 0;
         }
         div:last-child{
             color: #999999;
-            font-size: 14px;
+            font-size: 12px;
+            padding-bottom: 5px;
         }
     }
     .box-center-three{
@@ -64,16 +72,52 @@
         justify-content: center;
         .box-center-three-box{
             display: flex;
+            width: 95px;
             div:first-child{
-                font-size: 14px;
+                font-size: 12px;
                 color: #999999;
+                padding-right: 10px;
             }
             div:last-child{
                 color: #F8754F;
                 span:first-child{
-                    font-size: 18px;
+                    font-size: 16px;
+                    padding-right: 3px;
+                }
+                span:last-child{
+                    
                 }
             }
+        }
+        .end-activity{
+            padding: 5px 10px;
+            background-color: #CCCCCC;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 12px;
+        }
+    }
+}
+.box-bottom{
+    font-size: 14px;
+    color:#999999;
+    justify-content: flex-end;
+    margin-top: 10px;
+    .box-bottom-one,.box-bottom-two{
+        padding-right: 30px;
+    }
+    .iconfont{
+        padding-right: 5px;
+    }
+}
+.no-data-wrapper{
+    margin-top: 110px;
+    .no-data-tip{
+        text-align: center;
+        margin-top: 10px;
+        span:last-child{
+            color: #4C77FF;
+            text-decoration: underline;
         }
     }
 }

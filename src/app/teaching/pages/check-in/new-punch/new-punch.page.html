@@ -28,33 +28,37 @@
             <div class="media-content-box">
                 <div *ngIf="audioUrl" class="audio-content-box">
                     <audio [src]="audioUrl" controls></audio>
+                    <span class="iconfont ion-iosguanbi" (click)="deleteAudio()"></span>
                 </div>
-                <div *ngIf="imgages.length" class="image-content-box">
+                <div *ngIf="imgages.length || videUrl" class="image-content-box">
                     <ion-grid fixed>
                         <ion-row>
-                            <ion-col size="4" *ngFor="let item of imgages">
-                                <ion-img [src]="item"></ion-img>
+                            <ion-col size="4" *ngFor="let item of imgages, let i = index">
+                                <div class="image-item">
+                                    <ion-img [src]="item"></ion-img>
+                                    <span (click)="deleteImage(i)" class="iconfont ion-iosguanbi"></span>
+                                </div>
+                            </ion-col>
+                            <ion-col size="4" *ngIf="videUrl">
+                                <div class="video-content-box image-item">
+                                    <video controls [src]="videUrl"></video>
+                                    <span (click)="deleteVideo()" class="iconfont ion-iosguanbi"></span>
+                                </div>
                             </ion-col>
                         </ion-row>
                     </ion-grid>
-                </div>
-                <div class="video-content-box" *ngIf="videUrl">
-                    <video width="105" controls height="75" [src]="videUrl"></video>
                 </div>
             </div>
             <div class="upload-file">
                 <div class="upload-file-operate">
                     <div *ngIf="imgages.length < 9" class="upload-file-option" (click)="addPicture()">
-                        <img src="assets/img/image5.png">
-                        <div>添加照片</div>
+                        <img src="assets/img/add-img.png">
                     </div>
                     <div class="upload-file-option" *ngIf="!videUrl" (click)="addVideo()">
-                        <img src="assets/img/image5.png">
-                        <div>添加视频</div>
+                        <img src="assets/img/add-video.png">
                     </div>
                     <div class="upload-file-option" *ngIf="!audioUrl" (click)="addAudio()">
-                        <img src="assets/img/image5.png">
-                        <div>添加语音</div>
+                        <img src="assets/img/add-audio.png">
                     </div>
                 </div>
                 <div class="file-size-tip">温馨提示：上传视频需小于100M</div>
@@ -74,8 +78,8 @@
                 <ion-datetime mode="ios" [(ngModel)]="punchModel.stopDate" name="stopDate" picker-format="YYYY MM DD" displayFormat="YYYY-MM-DD"  cancelText="取消" doneText=确定 placeholder="请选择"></ion-datetime>
                 
             </ion-item>
-            <div style="padding: 20px 0;">
-                <ion-button expand="block" fill="clear" shape="round" (click)="handleCreat()" [disabled]="!punchForm.form.valid">创建打卡</ion-button>
+            <div style="padding: 20px 0; text-align: center;">
+                <ion-button (click)="handleCreat()" [disabled]="!punchForm.form.valid">创建打卡</ion-button>
             </div>
         </form>
     </div>

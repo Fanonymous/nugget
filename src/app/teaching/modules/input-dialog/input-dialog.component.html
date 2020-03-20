@@ -1,0 +1,9 @@
+<div class="input-dialog-wrapper">
+    <div class="dialog-title">驳回</div>
+    <div class="dialog-mess">驳回后，学生可重新提交</div>
+    <ion-textarea [(ngModel)]="reject" placeholder="请输入驳回原因" maxlength="16"></ion-textarea>
+    <div class="operate-button">
+        <ion-button color="light" (click)="cancel()">取消</ion-button>
+        <ion-button (click)="confirm()">确定</ion-button>
+    </div>
+</div>

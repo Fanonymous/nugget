@@ -10,7 +10,7 @@ import { Storage } from './providers/Storage'
 import { HttpServiceService } from './services/http-service.service'
 import { Helper } from './providers/Helper'
 import { NativeService } from './providers/NativeService'
-import { async } from '@angular/core/testing';
+import { JPushService } from './providers/jPushService'
 
 @Component({
   selector: 'app-root',
@@ -29,7 +29,8 @@ export class AppComponent {
         private navController : NavController,
         private helper : Helper,
         private androidPermissions : AndroidPermissions,
-        private native : NativeService
+        private native : NativeService,
+        private jPushService: JPushService
     ) {
         this.initializeApp()
     }
@@ -38,6 +39,7 @@ export class AppComponent {
         this.platform.ready().then(() => {
             this.statusBar.styleDefault();
             this.splashScreen.hide();
+            this.jPushService.initJpush()
             this.permissions()
             this.relogin()
         });
@@ -83,6 +85,7 @@ export class AppComponent {
                     Storage.localStorage.remove('deptId')
                     Storage.localStorage.remove('userType')
                     Storage.localStorage.remove('userId')
+                    Storage.localStorage.remove('registrationId')
                     this.navController.navigateForward(['login'])
                 }
             })

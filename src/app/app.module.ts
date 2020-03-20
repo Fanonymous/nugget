@@ -31,6 +31,8 @@ import { File } from '@ionic-native/file/ngx';
 import { FileChooser } from '@ionic-native/file-chooser/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
+import { Keyboard } from '@ionic-native/keyboard/ngx';
+import { JPush } from '@jiguang-ionic/jpush/ngx';
 
 //引入路由配置文件和根组件
 import { AppRoutingModule } from './app-routing.module';
@@ -49,7 +51,7 @@ var vConsole = new VConsole();
         HttpClientModule, 
         IonicModule.forRoot(), 
         AppRoutingModule,
-        FormsModule
+        FormsModule,
     ],
     providers: [           //配置服务
         StatusBar,
@@ -73,6 +75,8 @@ var vConsole = new VConsole();
         FileChooser,
         FilePath,
         WebView,
+        Keyboard,
+        JPush
     ],
     bootstrap: [AppComponent]
 })

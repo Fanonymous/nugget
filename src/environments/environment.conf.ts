@@ -11,7 +11,7 @@
 
 const devBase = 'http://192.168.1.46:8080/'
 
-const prodBase = 'http://192.168.1.46:8080/'
+const prodBase = 'http://192.168.1.238/'
 
 
 const devServers = {
