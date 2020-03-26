@@ -2,6 +2,7 @@ import { Injectable, Component } from '@angular/core';
 import { AlertController, LoadingController, Platform, ToastController } from '@ionic/angular';
 import { Storage } from './Storage'
 import { JPush } from '@jiguang-ionic/jpush/ngx';
+import { Router } from '@angular/router';
 
 @Injectable({
     providedIn: 'root'
@@ -11,7 +12,8 @@ export class JPushService {
     public sequence: number
     constructor(
         private platform: Platform,
-        private jPush: JPush
+        private jPush: JPush,
+        public router: Router
     ) {
         this.sequence = 0
     }
@@ -52,6 +54,11 @@ export class JPushService {
         document.addEventListener("jpush.openNotification", event => {
             let content = this.platform.is('ios') ? event['aps'].alert : event['alert'];
             console.log("黄 点击通知事件" + JSON.stringify(event));
+            if (Storage.localStorage.get('userType') == 3) {
+                this.router.navigate(['/student-punch'])
+            }else {
+                this.router.navigate(['/check-in'])
+            }
         }, false);
 
         //收到通知时会触发该事件

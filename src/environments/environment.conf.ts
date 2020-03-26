@@ -9,7 +9,7 @@
 
 // const prodBase = 'http://119.3.228.197/'
 
-const devBase = 'http://192.168.1.46:8080/'
+const devBase = 'http://192.168.1.238/'
 
 const prodBase = 'http://192.168.1.238/'
 
